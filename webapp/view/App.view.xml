@@ -1,6 +1,34 @@
-<mvc:View controllerName="com.sap.mybankdetails.controller.App"
+<mvc:View
+    controllerName="com.sap.mybankdetails.controller.App"
     xmlns:mvc="sap.ui.core.mvc"
-    xmlns="sap.m">
-    <Page id="page" title="{i18n>title}">
-    </Page>
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+>
+<!-- Controller is not avaible that's why are adding App tag we are using root view only -->
+    <App id="app">
+        <Page id="page" title="Account">
+        <headerContent>
+           <Button id="btmdemo"  type="Emphasized" text="Refresh"/>
+        </headerContent>
+        <content>
+            <!-- what is the property name or control name of where we load fragments in xml ?
+            control: Fragment property : fragmentName -->
+
+            <!-- What is use of Fragments in the UI ? 
+             is it good practise for declare fragments in view ?
+             Answer is: previously lots of code in Root view we declare the fragment in XML because of code 
+             readability to optimize your code 
+              -->
+              <!-- Fragments does not have their own controllers  -->
+            <core:Fragment id="bankdetailsfragment" fragmentName="com.sap.mybankdetails.view.fragments.BankDetails" type="XML" />
+
+            <!-- How to open a Dailog in Fragment ?
+             give button press event  -->
+
+             
+             <Button id="bankdeatil" type="Neutral" class="sapUiSmallMarginBegin" press=".onOpenBankDetails"  text="Find More Details...."/>
+             <!-- <Button id="btmdemo"  type="Emphasized" text="Refresh"/> -->
+        </content>
+        </Page>
+    </App>
 </mvc:View>
