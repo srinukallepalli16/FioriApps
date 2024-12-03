@@ -1,0 +1,12 @@
+<mvc:View xmlns:unified="sap.ui.unified" controllerName="com.app.zexcelltabledata.controller.App"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m" xmlns:upload="sap.m.upload" >
+    <App id="app" >
+      <Page id="page" title="{i18n>title}">
+      <VBox id="vbox" class="fileuplaod" fitContainer="true">
+          <unified:FileUploader id="fileUploader" buttonText="Upload" fileType="xlsx,txt,doc,pdf,png" placeholder="Choose your File...." change="onFileChange" />
+          <Button id="button" text="Submit" press="fileuplaod"/>
+      </VBox>
+      </Page>
+    </App>
+</mvc:View>
