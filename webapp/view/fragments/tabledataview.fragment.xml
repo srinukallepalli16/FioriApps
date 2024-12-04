@@ -1,15 +1,5 @@
 <core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:u="sap.ui.unified">
-  <Table id="table" items="{tableXLData>/results}">
-
-     <headerToolbar>
-     <OverflowToolbar id="_IDGenOverflowToolbar1" >
-         <content>
-           <Title id="_IDGenTitle" text="Product Details"/>
-           <ToolbarSpacer id="_IDGenToolbarSpacer" />
-           <u:FileUploader id="_IDGenFileUploader" change="handleUpload" />
-         </content>
-     </OverflowToolbar>
-     </headerToolbar>
+      <Table id="table" items="{tableXLData>/result}">
     <columns>
       <Column id="_IDGenColumn">
         <Label id="_IDGenLabel1" text="Date" />
@@ -41,10 +31,21 @@
           <Text id="_IDGenText2" text="{tableXLData>MaterialNumber}" />
           <Text id="_IDGenText3" text="{tableXLData>MaterialDescription}" />
           <Text id="_IDGenText4" text="{tableXLData>Quantity}" />
-          <Text id="_IDGenText5" text="{Field4>Price}" />
-          <Text id="_IDGenText7" text="{tableXLData>EpcisStatus}" />
-        </cells>
-      </ColumnListItem>
-    </items>
-  </Table>
+          <Text id="_IDGenText5" text="{tableXLData>Price}"/>
+          <Text id="_IDGenText7" text="{tableXLData>EpcisStatus}"/>
+           </cells>
+         </ColumnListItem>
+        </items>
+      </Table>
 </core:FragmentDefinition>
+
+
+  <!-- <headerToolbar>
+     <OverflowToolbar id="_IDGenOverflowToolbar1" >
+         <content>
+           <Title id="_IDGenTitle" text="Product Details"/>
+           <ToolbarSpacer id="_IDGenToolbarSpacer" />
+           <u:FileUploader id="_IDGenFileUploader" change="handleUpload" />
+         </content>
+     </OverflowToolbar>
+     </headerToolbar> -->
