@@ -1,42 +1,42 @@
 <core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:u="sap.ui.unified">
-      <Table id="table" items="{tableXLData>/result}">
-    <columns>
-      <Column id="_IDGenColumn">
-        <Label id="_IDGenLabel1" text="Date" />
+  <Table id="table" items="{tableXLData>/result}">
+    <columns >
+      <Column id="column1" >
+        <Label id="label1" text="{/header}"/>
       </Column>
-      <Column id="_IDGenColumn1">
-        <Label id="_IDGenLabel2" text="DeliveryNumber" />
+      <Column id="column2">
+        <Label id="label2" text="{/header}"/>
       </Column>
-      <Column id="_IDGenColumn2">
-        <Label id="_IDGenLabel3" text="MaterialNumber" />
+      <Column id="column3">
+        <Label id="label3" text="{/header}"/>
       </Column>
-      <Column id="_IDGenColumn3">
-        <Label id="_IDGenLabel4" text="MaterialDescription" />
+      <Column id="column4">
+        <Label id="label4" text="{/header}"/>
       </Column>
-      <Column id="_IDGenColumn5">
-        <Label id="_IDGenLabel6" text="Quantity" />
+      <Column id="column5">
+        <Label id="label5" text="{/header}" />
       </Column>
-       <Column id="_IDGenColumn6">
-        <Label id="_IDGenLabel57" text="Price"/>
+      <Column id="column6" >
+        <Label id="label6" text="{/header}"/>
       </Column>
-        <Column id="_IDGenColumn7">
-        <Label id="_IDGenLabel8" text="EpcisStatus" />
+      <Column id="column7" >
+        <Label id="label" text="{/header}"/>
       </Column>
-    </columns>
-    <items>
-      <ColumnListItem id="_IDGenColumnListItem">
-        <cells>
-          <Text id="_IDGenText" text="{tableXLData>Date}" />
-          <Text id="_IDGenText1" text="{tableXLData>DeliveryNumber}" />
-          <Text id="_IDGenText2" text="{tableXLData>MaterialNumber}" />
-          <Text id="_IDGenText3" text="{tableXLData>MaterialDescription}" />
-          <Text id="_IDGenText4" text="{tableXLData>Quantity}" />
-          <Text id="_IDGenText5" text="{tableXLData>Price}"/>
-          <Text id="_IDGenText7" text="{tableXLData>EpcisStatus}"/>
-           </cells>
-         </ColumnListItem>
+    </columns> 
+        <items>
+            <ColumnListItem id="columnlistitem1">
+                <cells>
+                    <Text id="text1" text="{tableXLData>0}" />
+                    <Text id="text2" text="{tableXLData>1}" />
+                    <Text id="text3" text="{tableXLData>2}" />
+                    <Text id="text4" text="{tableXLData>3}" />
+                    <Text id="text5" text="{tableXLData>4}" />
+                    <Text id="text6" text="{tableXLData>5}" />
+                    <Text id="text7" text="{tableXLData>6}" />
+                </cells>
+            </ColumnListItem>
         </items>
-      </Table>
+  </Table>
 </core:FragmentDefinition>
 
 

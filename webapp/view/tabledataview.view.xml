@@ -4,8 +4,7 @@
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
     xmlns:core="sap.ui.core">
-    <Page id="page2">
-      <core:Fragment fragmentName="com.app.zexcelltabledata.view.fragments.tabledataview" id="tabledata" type="XML"/> 
-      <Button id="homepage" press="homepage" icon="sap-icon://undo" text="Back"/>
+    <Page id="view2">
+      <core:Fragment fragmentName="com.app.zexcelltabledata.view.fragments.tabledataview" id="tablefragmentdata" type="XML"/>
     </Page>
 </mvc:View>
