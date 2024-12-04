@@ -1,0 +1,56 @@
+<mvc:View controllerName="com.app.assignment2.controller.App"
+    xmlns:mvc="sap.ui.core.mvc" xmlns:u="sap.ui.unified"
+    xmlns="sap.m">
+   <App id="app">
+    <Page id="page">
+      <Table id="table" items="{tableXLData>/result}">
+
+     <headerToolbar>
+     <OverflowToolbar id="_IDGenOverflowToolbar1" >
+         <content>
+           <Title id="_IDGenTitle" text="Product Details"/>
+           <ToolbarSpacer id="_IDGenToolbarSpacer" />
+           <u:FileUploader id="_IDGenFileUploader" change="handleUpload" />
+         </content>
+     </OverflowToolbar>
+     </headerToolbar>
+    <columns>
+      <Column id="_IDGenColumn">
+        <Label id="_IDGenLabel1" text="Date" />
+      </Column>
+      <Column id="_IDGenColumn1">
+        <Label id="_IDGenLabel2" text="DeliveryNumber" />
+      </Column>
+      <Column id="_IDGenColumn2">
+        <Label id="_IDGenLabel3" text="MaterialNumber" />
+      </Column>
+      <Column id="_IDGenColumn3">
+        <Label id="_IDGenLabel4" text="MaterialDescription" />
+      </Column>
+      <Column id="_IDGenColumn5">
+        <Label id="_IDGenLabel6" text="Quantity" />
+      </Column>
+       <Column id="_IDGenColumn6">
+        <Label id="_IDGenLabel57" text="Price"/>
+      </Column>
+        <Column id="_IDGenColumn7">
+        <Label id="_IDGenLabel8" text="EpcisStatus" />
+      </Column>
+    </columns>
+    <items>
+      <ColumnListItem id="_IDGenColumnListItem">
+        <cells>
+          <Text id="_IDGenText" text="{tableXLData>Date}" />
+          <Text id="_IDGenText1" text="{tableXLData>DeliveryNumber}" />
+          <Text id="_IDGenText2" text="{tableXLData>MaterialNumber}" />
+          <Text id="_IDGenText3" text="{tableXLData>MaterialDescription}" />
+          <Text id="_IDGenText4" text="{tableXLData>Quantity}" />
+          <Text id="_IDGenText5" text="{tableXLData>Price}"/>
+          <Text id="_IDGenText7" text="{tableXLData>EpcisStatus}"/>
+           </cells>
+         </ColumnListItem>
+        </items>
+      </Table>
+    </Page>
+    </App>
+</mvc:View>
