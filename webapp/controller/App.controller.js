@@ -21,5 +21,6 @@ sap.ui.define([
         //     var oNavto = sap.ui.core.UIComponent.getRouterFor(this);
         //     oNavto.navTo("RouteApp");
         // }
+        // sample code 
     });
 });
