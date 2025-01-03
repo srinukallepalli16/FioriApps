@@ -1,0 +1,10 @@
+/* Enter your custom styles here */
+.loginpage{
+    font-weight: 900;
+    color: black;
+}
+.login{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -1,0 +1,6 @@
+<core:FragmentDefinition xmlns:f2="sap.f" xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:l="sap.ui.layout"
+xmlns:f="sap.ui.layout.form">
+    <VBox id="vbox2" class="sapUiSmallMargin">
+        <Text id="text123" text="{oModel>/data/name}"/>
+    </VBox>
+</core:FragmentDefinition>

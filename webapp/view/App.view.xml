@@ -1,0 +1,36 @@
+<mvc:View controllerName="logins.controller.App"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:tnt="sap.tnt"
+    xmlns:form="sap.ui.layout.form">
+    <!-- <App id="app"> -->
+    <Page id="page" title="{i18n>title}">
+     <tnt:ToolHeader id="_IDGenToolHeader1" >
+        <ToolbarSpacer id="_IDGenToolbarSpacer" ></ToolbarSpacer>
+        <Text id="_IDGenText" text="Login Page" class="loginpage"/>
+        <ToolbarSpacer id="toolbar" ></ToolbarSpacer>
+     </tnt:ToolHeader>
+     <content>
+     <VBox id="vbox" class="login" fitContainer="true">
+        <form:SimpleForm id="simpleform" editable="true" title="Login Form" layout="ResponsiveGridLayout" >
+             <Label id="_IDGenLabel" text="Username:" />
+             <Input id="input1" placeholder="Enter your Username:"/>
+             <Label id="_IDGenLabel1" text="Password:"/>
+             <Input id="input2" type="Password" placeholder="Enter your Password:"/>
+             <Button id="_IDGenButton" type="Emphasized" text="Login" press="loginpress"/>
+        </form:SimpleForm>
+     </VBox>
+     </content>
+     <footer>
+        <Bar id="bar">
+            <contentLeft>
+               <Text id="_IDGenText1" text="CopyRight@Srinu"/>
+            </contentLeft>
+            <contentRight>
+               <Text id="_IDGenText2" text="WEBPAGE"/>
+            </contentRight>
+        </Bar>
+     </footer>
+    </Page>
+    <!-- </App> -->
+</mvc:View>
