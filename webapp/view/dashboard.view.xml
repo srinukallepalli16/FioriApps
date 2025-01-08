@@ -1,0 +1,17 @@
+<mvc:View controllerName="app_01.controller.Home"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m" xmlns:tnt="sap.tnt" xmlns:form="sap.ui.layout.form">
+    <Page id="_IDGenPage1" >
+    <!-- <Text id="_IDGenText3" text="Srinivas"/> -->
+     <tnt:ToolHeader id="_IDGenToolHeader2" >
+        <Button id="_IDGenButton1" icon="sap-icon://menu2" text="Menu"/>
+        <ToolbarSpacer id="_IDGenToolbarSpacer3" ></ToolbarSpacer>
+        <Text id="_IDGenText3" text="Dashboard"/>
+        <ToolbarSpacer id="_IDGenToolbarSpacer2" ></ToolbarSpacer>
+        <Button id="_IDGenButton2" text="HI,{oUserModel>/username}"  press="myprofile"/>
+     </tnt:ToolHeader>
+     <content>
+      <Text id="_IDGenText4" text="{oUserModel>/password}"></Text>
+     </content>
+    </Page>
+</mvc:View>
