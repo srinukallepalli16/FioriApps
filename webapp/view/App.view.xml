@@ -1,6 +1,24 @@
 <mvc:View controllerName="com.sap.mybankdetails.controller.App"
     xmlns:mvc="sap.ui.core.mvc"
-    xmlns="sap.m">
-    <Page id="page" title="{i18n>title}">
-    </Page>
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+    <App id="app">
+      <Page id="page" title="{i18n>title}">
+      <headerContent>
+        <Button id="demobutn" type="Neutral" text="Refresh" />
+      </headerContent>
+         <content>
+         <core:Fragment id="fragmentid" type="XML" fragmentName="com.sap.mybankdetails.view.fragments.BankDetails"/>
+         <ToolbarSpacer id="toolbar"/>
+         <Button id="button" class="sapUiSmallMarginBegin" press="openbankdetails" type="Emphasized" text="Find More details..."/>
+       
+        </content>
+      </Page>
+    </App>
 </mvc:View>
+
+<!-- shift+alt+f -->
+<!-- core library, hereafter called the core. Without the core, SAPUI5 can't run at all.
+ In this library, you'll find all the basic functionality, including model,
+ view, and controller base classes, control classes, routing and navigation,
+  and more. Bootstrapping is the process of loading and initializing SAPUI5. -->
