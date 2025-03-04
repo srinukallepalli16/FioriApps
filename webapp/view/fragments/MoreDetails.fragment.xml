@@ -1,34 +1,37 @@
 <core:FragmentDefinition xmlns:core="sap.ui.core"
     xmlns="sap.m">
 
-    <Dialog id="morebankDetails" title="Confidential Details">
+    <Dialog id="morebankDetails" title="{i18n>confendetails}">
 
         <VBox id="vbox1" class="sapUiSmallMargin">
-            <Title id="title1" text="Account Details" level="H1"/>
+            <Title id="title1" text="{i18n>accountdetails}" level="H1"/>
             <HBox id="hbo22x2">
-                <Label text="Bank Account Number:" id="labe22l" />
+                <Label text="{i18n>accNumber}" id="labe22l" />
                 <!-- class="sapUiSmallMarginEnd" -->
                 <Text text="123456789" id="bankAcc22Val" class="sapUiSmallMarginBegin"/>
             </HBox>
             <HBox id="hbox22">
-                <Label text="Account Holder Name:" id="accholdernam22e" />
+                <Label text="{i18n>accholdername}" id="accholdernam22e" />
                 <!-- class="sapUiSmallMarginEnd" -->
                 <Text text="Srinu Kallepalli" id="accholdrname22" class="sapUiSmallMarginBegin"/>
             </HBox>
             <HBox id="hbox32">
-                <Label text="IFSC Code::" id="idIFSC2" />
+                <Label text="{i18n>ifsccode}" id="idIFSC2" />
                 <!-- class="sapUiSmallMarginEnd" -->
                 <Text text="123456******" id="ifscco22de" class="sapUiSmallMarginBegin"/>
             </HBox>
             <HBox id="hbox33">
-                <Label text="Customer ID:" id="label12"/>
-                <Text text="123" id="customerid"/>
+                <Label text="{i18n>customerid}" id="label12"/>
+                <Text text="123" id="customerid" class="sapUiSmallMarginBegin"/>
+            </HBox>
+            <HBox id="hbox43">
+                 <Label id="label33" text="{i18n>address}"/>
+                 <Text text="Andhra Pradesh" class="sapUiSmallMarginBegin" id="address"/>
             </HBox>
         </VBox>
         <beginButton>
-           <Button id="butn" text="Close" press="onCloseBankDetail"/>
+            <Button id="butn" text="{i18n>close}" press="onCloseBankDetail"/>
         </beginButton>
-
     </Dialog>
 
 </core:FragmentDefinition>

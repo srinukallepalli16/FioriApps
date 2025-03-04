@@ -5,6 +5,7 @@ sap.ui.define([
 
     return Controller.extend("com.sap.mybankdetails.controller.App", {
         onInit() {
+            debugger
         },
         openbankdetails: function () {
             //create dailog lazily
