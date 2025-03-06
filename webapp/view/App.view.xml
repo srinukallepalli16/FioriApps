@@ -1,20 +1,20 @@
 <mvc:View controllerName="com.sap.mybankdetails.controller.App"
-    xmlns:mvc="sap.ui.core.mvc"
-    xmlns="sap.m"
-    xmlns:core="sap.ui.core">
-    <App id="app">
-      <Page id="page" title="{i18n>title}">
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns="sap.m"
+  xmlns:core="sap.ui.core">
+  <App id="app">
+    <Page id="page" title="{i18n>title}">
       <headerContent>
-        <Button id="demobutn" type="Neutral" text="Refresh" />
+        <Button id="demobutn" type="Neutral" text="{i18n>home}" />
       </headerContent>
-         <content>
-         <core:Fragment id="fragmentid" type="XML" fragmentName="com.sap.mybankdetails.view.fragments.BankDetails"/>
-         <ToolbarSpacer id="toolbar"/>
-         <Button id="button" class="sapUiSmallMarginBegin" press="openbankdetails" type="Emphasized" text="Find More details..."/>
-       
-        </content>
-      </Page>
-    </App>
+      <content>
+        <core:Fragment id="fragmentid" type="XML" fragmentName="com.sap.mybankdetails.view.fragments.BankDetails"/>
+        <ToolbarSpacer id="toolbar"/>
+        <Button id="button" class="sapUiSmallMarginBegin" press="openbankdetails" type="Emphasized" text="{i18n>findMoreBtn}"/>
+
+      </content>
+    </Page>
+  </App>
 </mvc:View>
 
 <!-- shift+alt+f -->
