@@ -6,6 +6,7 @@
         <HBox id="hbox">
             <Label text="{i18n>accNumber}" id="label" />
             <!-- class="sapUiSmallMarginEnd" -->
+            <!-- Property Binding used in this fragment -->
             <Text text="{/AccountDetails/AccountNum}" id="bankAccVal" class="sapUiSmallMarginBegin"/>
         </HBox>
         <HBox id="hbox2">

@@ -2,7 +2,7 @@
     xmlns="sap.m">
 
     <Dialog id="morebankDetails" title="{i18n>confendetails}">
-
+<!-- //element binding  -->
         <VBox id="vbox1" binding="{/AccountDetails}" class="sapUiSmallMargin">
             <Title id="title1" text="{i18n>accountdetails}" level="H1"/>
             <HBox id="hbo22x2">

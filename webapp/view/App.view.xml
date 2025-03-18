@@ -8,7 +8,7 @@
         <Button id="demobutn" type="Neutral" text="{i18n>home}" />
       </headerContent>
       <content>
-        <Panel id="panel" class="flexbox">
+        <Panel id="panel">
           <Panel id="panel1" headerText="{i18n>accountdetails}"></Panel>
           <FlexBox id="flexbox" alignItems="Start" justifyContent="Start">
             <ToolbarSpacer id="toolbarspcae12r"/>
@@ -26,8 +26,17 @@
           </FlexBox>
         </Panel>
         <ToolbarSpacer width="20rem" id="toolbarspacer3333"/>
-        <Panel id="panel3" expandable="true">
-          <!-- <GenericTile id="tile"></GenericTile> -->
+
+        <Panel id="panel3" headerText="Card Details" width="auto" class="sapUiResponsiveMargin" expandable="true">
+          <List id="myList" mode="MultiSelect" headerText="Inverted Info State" items="">
+            <items>
+              <StandardListItem id="_IDGenStandardListItem" title="title" description="desc" icon="sap-icon://credit-card" iconInset="false" highlight="Information" info="Active" infoState="Information" infoStateInverted="true" />
+
+              <StandardListItem id="_IDGenStandardListItem1" title="title" description="desc" icon="sap-icon://credit-card" iconInset="false" highlight="Error" info="Active" infoState="Error" infoStateInverted="true" />
+
+              <StandardListItem id="_IDGenStandardListItem2" title="title" description="desc" icon="sap-icon://credit-card" iconInset="false" highlight="Success" info="Active" infoState="Success" infoStateInverted="true" />
+            </items>
+          </List>
         </Panel>
       </content>
     </Page>
