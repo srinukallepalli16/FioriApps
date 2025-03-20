@@ -19,12 +19,48 @@ sap.ui.define([
                         country:"USA"
                     }
                 },
-                "ifsccode": "098765454"
-            }
+                // "ifsccode": "098765454"
+               "cardDetails":[
+                   {
+                    CardCompany:"Master Card",
+                    cardtype:"Credit Card",
+                    cardnumber:"1111111111",
+                    assignmentdate:"assigned on 12 oct 2024",
+                    state:false
+
+                   },
+                   {
+                    CardCompany:"Master Card",
+                    cardtype:"Debit Card",
+                    cardnumber:"453627891",
+                    assignmentdate:"assigned on 12 nov 2022",
+                    state:true
+
+                   },
+                   {
+                    CardCompany:"Master Card",
+                    cardtype:"Debit Card",
+                    cardnumber:"8759363738",
+                    assignmentdate:"assigned on 16 march 2023",
+                    state:false
+
+                   },
+                   {
+                    CardCompany:"Master Card",
+                    cardtype:"Credit Card",
+                    cardnumber:"62372376327",
+                    assignmentdate:"assigned on 19 jun 2025",
+                    state:true
+
+                   }
+               ]
+
+            };
+            
       
             let oModel = new sap.ui.model.json.JSONModel();
             oModel.setData(oData);
-            this.getView().setModel(oModel);
+            this.getView().setModel(oModel,"oBankDetails");
             // debugger
             /*
             if (navigator.language == "en-US") {

@@ -1,0 +1,14 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m">
+    <Panel id="panel3" headerText="Card Details" width="auto" class="sapUiResponsiveMargin" expandable="true">
+        <!-- Aggregation Binding Used in List -->
+          <List id="myList" items="{oBankDetails>/cardDetails}" mode="MultiSelect" headerText="Inverted Info State">
+            <items>
+              <StandardListItem id="_IDGenStandardListItem" title="{=${oBankDetails>CardCompany}.toUpperCase()} ({oBankDetails>cardnumber})"
+               description="{=${oBankDetails>cardtype}.toUpperCase()} {oBankDetails>assignmentdate}" icon="sap-icon://credit-card" 
+               iconInset="false" highlight="{=${oBankDetails>state}=== true ? 'Success':'Error'}" 
+               info="{=${oBankDetails>state}===true ? 'Active':'Expired'}" 
+              infoState="{=${oBankDetails>state}=== true ? 'Success':'Error'}" infoStateInverted="true" />
+            </items>
+          </List>
+        </Panel>
+</core:FragmentDefinition>

@@ -3,30 +3,30 @@
 
     <Dialog id="morebankDetails" title="{i18n>confendetails}">
 <!-- //element binding  -->
-        <VBox id="vbox1" binding="{/AccountDetails}" class="sapUiSmallMargin">
+        <VBox id="vbox1" binding="{oBankDetails>/AccountDetails}" class="sapUiSmallMargin">
             <Title id="title1" text="{i18n>accountdetails}" level="H1"/>
             <HBox id="hbo22x2">
                 <Label text="{i18n>accNumber}" id="labe22l" />
                 <!-- class="sapUiSmallMarginEnd" -->
-                <Text text="{AccountNum}" id="bankAcc22Val" class="sapUiSmallMarginBegin"/>
+                <Text text="{oBankDetails>AccountNum}" id="bankAcc22Val" class="sapUiSmallMarginBegin"/>
             </HBox>
             <HBox id="hbox22">
                 <Label text="{i18n>accholdername}" id="accholdernam22e" />
                 <!-- class="sapUiSmallMarginEnd" -->
-                <Text text="{Name}" id="accholdrname22" class="sapUiSmallMarginBegin"/>
+                <Text text="{oBankDetails>Name}" id="accholdrname22" class="sapUiSmallMarginBegin"/>
             </HBox>
             <HBox id="hbox32">
                 <Label text="{i18n>ifsccode}" id="idIFSC2" />
                 <!-- class="sapUiSmallMarginEnd" -->
-                <Text text="{IFSCCode}" id="ifscco22de" class="sapUiSmallMarginBegin"/>
+                <Text text="{oBankDetails>IFSCCode}" id="ifscco22de" class="sapUiSmallMarginBegin"/>
             </HBox>
             <HBox id="hbox33">
                 <Label text="{i18n>customerid}" id="label12"/>
-                <Text text="{CustomerId}" id="customerid" class="sapUiSmallMarginBegin"/>
+                <Text text="{oBankDetails>CustomerId}" id="customerid" class="sapUiSmallMarginBegin"/>
             </HBox>
             <HBox id="hbox43">
                  <Label id="label33" text="{i18n>address}"/>
-                 <Text text="{Address/city},{Address/postalcode},{Address/country}" class="sapUiSmallMarginBegin" id="address"/>
+                 <Text text="{oBankDetails>Address/city},{oBankDetails>Address/postalcode},{oBankDetails>Address/country}" class="sapUiSmallMarginBegin" id="address"/>
             </HBox>
         </VBox>
         <beginButton>
