@@ -27,6 +27,13 @@
           }
         }
       }
+    },
+    "dataSources": {
+      "JsonModel":{
+        "uri": "model/bankdetails.json",
+        "type": "JSON"
+      }
+    
     }
   },
   "sap.ui": {
@@ -70,6 +77,10 @@
         "settings": {
           "bundleName": "com.sap.mybankdetails.i18n.i18n_es"
         }
+      },
+      "oBankDetails":{
+        "type": "sap.ui.model.json.JSONModel",
+        "dataSource": "JsonModel"
       }
     },
     "resources": {
