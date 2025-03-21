@@ -39,5 +39,9 @@
             "assignmentdate": "assigned on 19 jun 2025",
             "state": true
         }
-    ]
+    ],
+    "housespending": 40000,
+    "emi":21655,
+    "entertainment":38555,
+    "empsalary":100000
 }

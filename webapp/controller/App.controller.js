@@ -1,6 +1,9 @@
 sap.ui.define([
-    "sap/ui/core/mvc/Controller"
-], (Controller) => {
+    "sap/ui/core/mvc/Controller",
+    "sap/m/MessageBox",
+    "sap/m/MessageToast",
+    "../model/formatter"
+], (Controller,MessageBox,MessageToast,formatter) => {
     "use strict";
 
     return Controller.extend("com.sap.mybankdetails.controller.App", {
@@ -54,6 +57,14 @@ sap.ui.define([
                 var i18nModel = this.getOwnerComponent().getModel(appLang);
                 this.getOwnerComponent().setModel(i18nModel, "i18n");
             }
+        },
+        donutcharts:function(){
+            MessageToast.show("The Interactive Donut Chart is pressed.");
+        },
+        onSelectionChanged:function(oEvent){
+            let oSegment = oEvent.getParameter("segment");
+            MessageToast.show(oSegment.getLabel()+ " : " + ((oSegment.getValue() > 50) ? "Critical":"Moderate") );
+
         }
 
     });

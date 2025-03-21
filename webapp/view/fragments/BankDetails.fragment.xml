@@ -1,5 +1,5 @@
 <core:FragmentDefinition xmlns="sap.m"
-    xmlns:core="sap.ui.core">
+    xmlns:core="sap.ui.core" xmlns:m="sap.suite.ui.microchart">
 
     <VBox id="vbox" class="sapUiSmallMargin">
         <!-- <Title id="title" text="{i18n>accountdetails}" level="H1"/> -->
