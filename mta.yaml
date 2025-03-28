@@ -1,0 +1,89 @@
+_schema-version: 3.3.0
+ID: cap_tutorial
+description: A simple CAP project.
+version: 1.0.0
+modules:
+- name: cap_tutorial-srv
+  type: nodejs
+  path: gen/srv
+  requires:
+  - name: cap_tutorial-db
+  provides:
+  - name: srv-api
+    properties:
+      srv-url: ${default-url}
+  parameters:
+    buildpack: nodejs_buildpack
+    readiness-health-check-http-endpoint: /health
+    readiness-health-check-type: http
+  build-parameters:
+    builder: npm
+- name: cap_tutorial-db-deployer
+  type: hdb
+  path: gen/db
+  requires:
+  - name: cap_tutorial-db
+  parameters:
+    buildpack: nodejs_buildpack
+- name: cap_tutorial-app-deployer
+  type: com.sap.application.content
+  path: gen
+  requires:
+  - name: cap_tutorial-html5-repo-host
+    parameters:
+      content-target: true
+  build-parameters:
+    build-result: app/
+    requires:
+    - artifacts:
+      - comappsoapp.zip
+      name: comappsoapp
+      target-path: app//
+- name: comappsoapp
+  type: html5
+  path: app/so_app
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+resources:
+- name: cap_tutorial-db
+  type: com.sap.xs.hdi-container
+  parameters:
+    service: hana
+    service-plan: hdi-shared
+- name: cap_tutorial-html5-repo-host
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-plan: app-host
+- name: cap_tutorial-destination-service
+  type: org.cloudfoundry.managed-service
+  parameters:
+    config:
+      HTML5Runtime_enabled: false
+      init_data:
+        instance:
+          destinations:
+          - Authentication: NoAuthentication
+            Name: ui5
+            ProxyType: Internet
+            Type: HTTP
+            URL: https://ui5.sap.com
+          existing_destinations_policy: update
+      version: 1.0.0
+    service: destination
+    service-name: cap_tutorial-destination-service
+    service-plan: lite
+parameters:
+  deploy_mode: html5-repo
+  enable-parallel-deployments: true
+build-parameters:
+  before-all:
+  - builder: custom
+    commands:
+    - npm ci
+    - npx cds build --production
