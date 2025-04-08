@@ -1,0 +1,32 @@
+###
+#
+#
+GET http://localhost:4004/odata/v4/catalog/Book
+
+###
+GET http://localhost:4004/odata/v4/catalog/Book(2)
+
+### Insert data 
+POST http://localhost:4004/odata/v4/catalog/Book
+Content-Type: application/json
+
+{
+   "Id": 6,
+  "title": "SriJ",
+  "author": "Srini",
+  "price": 150,
+  "stock": 21 
+}
+
+### Update the Record
+
+PUT http://localhost:4004/odata/v4/catalog/Book(7)
+Content-Type: application/json
+
+{
+   "Id": 7,
+  "title": "SriJ",
+  "author": "David",
+  "price": 150,
+  "stock": 21 
+}

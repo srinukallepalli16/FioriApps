@@ -1,0 +1,79 @@
+using CatalogService as service from '../../srv/service';
+annotate service.Book with @(
+    UI.FieldGroup #GeneratedGroup : {
+        $Type : 'UI.FieldGroupType',
+        Data : [
+            {
+                $Type : 'UI.DataField',
+                Label : 'Id',
+                Value : Id,
+            },
+            {
+                $Type : 'UI.DataField',
+                Label : 'title',
+                Value : title,
+            },
+            {
+                $Type : 'UI.DataField',
+                Label : 'author',
+                Value : author,
+            },
+            {
+                $Type : 'UI.DataField',
+                Label : 'price',
+                Value : price,
+            },
+            {
+                $Type : 'UI.DataField',
+                Label : 'stock',
+                Value : stock,
+            },
+            {
+                $Type : 'UI.DataField',
+                Label : 'location',
+                Value : location,
+            },
+            {
+                $Type : 'UI.DataField',
+                Label : 'genere',
+                Value : genere,
+            },
+        ],
+    },
+    UI.Facets : [
+        {
+            $Type : 'UI.ReferenceFacet',
+            ID : 'GeneratedFacet1',
+            Label : 'General Information',
+            Target : '@UI.FieldGroup#GeneratedGroup',
+        },
+    ],
+    UI.LineItem : [
+        {
+            $Type : 'UI.DataField',
+            Label : 'Id',
+            Value : Id,
+        },
+        {
+            $Type : 'UI.DataField',
+            Label : 'title',
+            Value : title,
+        },
+        {
+            $Type : 'UI.DataField',
+            Label : 'author',
+            Value : author,
+        },
+        {
+            $Type : 'UI.DataField',
+            Label : 'price',
+            Value : price,
+        },
+        {
+            $Type : 'UI.DataField',
+            Label : 'stock',
+            Value : stock,
+        },
+    ],
+);
+
