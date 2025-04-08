@@ -1,0 +1,54 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core"
+    xmlns="sap.m">
+      <!-- <Text id="_IDGen123Text" text="{/Customerdetails/0/CustomerID}" /> -->
+    <Table id="_IDGenTable" itemPress="itemPresslist" items="{/Customerdetails}">
+        <columns>
+            <Column id="column">
+                <Label id="_IDGenLabel" text="CustomerID"/>
+            </Column>
+              <Column id="column2">
+                <Label id="_IDGenLabel2" text="CompanyName"/>
+            </Column>
+              <Column id="colum3n">
+                <Label id="_IDGenLabe3l" text="ContactName"/>
+            </Column>
+              <Column id="column4">
+                <Label id="_IDGenLa4bel" text="ContactTitle"/>
+            </Column>
+              <Column id="colum5n">
+                <Label id="_IDGe5nLabel" text="Address"/>
+            </Column>
+              <Column id="colum6n">
+                <Label id="_IDGenL6abel" text="City"/>
+            </Column>
+              <Column id="colu7mn">
+                <Label id="_IDG7enLabel" text="Region"/>
+            </Column>
+              <Column id="colum8n">
+                <Label id="_IDGenLab8el" text="PostalCode"/>
+            </Column>
+              <Column id="col9umn">
+                <Label id="_IDG9enLabel" text="Country"/>
+            </Column>
+              <Column id="col11umn">
+                <Label id="_IDGen11Label" text="Phone"/>
+            </Column>
+        </columns>
+        <items>
+           <ColumnListItem id="columns" type="Navigation" >
+               <cells>
+                   <Text id="text1" text="{CustomerID}"/>             
+                   <Text id="text2" text="{CompanyName}"/>
+                   <Text id="text3" text="{ContactName}"/>
+                   <Text id="text4" text="{ContactTitle}"/>
+                   <Text id="text5" text="{Address}"/>
+                   <Text id="text6" text="{City}"/>
+                   <Text id="text7" text="{Region}"/>
+                   <Text id="text8" text="{PostalCode}"/>
+                   <Text id="text9" text="{Country}"/>
+                   <Text id="text10" text="{Phone}"/>
+               </cells>
+           </ColumnListItem>
+        </items>
+    </Table>
+</core:FragmentDefinition>

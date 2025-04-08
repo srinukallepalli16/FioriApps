@@ -1,0 +1,11 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core"
+    xmlns="sap.m">
+    <ObjectHeader id="objectheader" title="{oUserModel>/CustomerID}" number="{oUserModel>/CustomerID}">
+        <attributes>
+            <ObjectAttribute id="attr1" text="{oUserModel>/CustomerID}"></ObjectAttribute>
+            <ObjectAttribute id="attr2" text="{oUserModel>/CustomerID}"></ObjectAttribute>
+            <ObjectAttribute id="attr3" text="{oUserModel>/CustomerID}"></ObjectAttribute>
+            <ObjectAttribute id="attr4" text="{oUserModel>/CustomerID}"></ObjectAttribute>
+        </attributes>
+    </ObjectHeader>
+</core:FragmentDefinition>

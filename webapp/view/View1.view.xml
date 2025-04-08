@@ -1,0 +1,8 @@
+<mvc:View controllerName="zbankdetailsapp.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core"
+    xmlns="sap.m">
+    <Page id="page" title="{i18n>title}">
+        <Button id="button" text="Button" press="buttonpress"/>
+        <core:Fragment id="fragment" fragmentName="zbankdetailsapp.view.fragments.BankDetails"/>
+    </Page>
+</mvc:View>
