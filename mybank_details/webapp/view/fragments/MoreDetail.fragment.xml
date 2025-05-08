@@ -1,0 +1,33 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core"
+    xmlns="sap.m">
+
+    <Dialog id="dailog" title="Confendential Details">
+        <VBox id="vbox11" class="sapUiSmallMarginBegin">
+            <Title id="title11" text="{i18n>accdetails}" level="H1" />
+            <HBox id="hbox11">
+                <Label id="label22" text="{i18n>accNumber}"/>
+                <Text text="12345*********" id="accNum1" class="sapUiSmallMarginBegin"/>
+            </HBox>
+            <HBox id="hbox22">
+                <Label id="label33" text="{i18n>acchName}"/>
+                <Text id="acchName1" text="Srinu Kallepalli" class="sapUiSmallMarginBegin"/>
+            </HBox>
+            <HBox id="hbox44">
+                <Label id="label44" text="{i18n>ifsccode}"/>
+                <Text id="ifscCode1" text="00000******" class="sapUiSmallMarginBegin"/>
+            </HBox>
+            <HBox id="hbox444">
+                <Label id="label454" text="{i18n>CustomeriD}"/>
+                <Text id="custmerid" text="00000******" class="sapUiSmallMarginBegin"/>
+            </HBox>
+            <HBox id="hbox454">
+                <Label id="label464" text="{i18n>address}"/>
+                <Text id="addres" text="Address" class="sapUiSmallMarginBegin"/>
+            </HBox>
+        </VBox>
+        <buttons>
+           <Button id="cancel" type="Transparent" text="{i18n>cancel}" press="cancelbtn"/>
+        </buttons>
+    </Dialog>
+
+</core:FragmentDefinition>

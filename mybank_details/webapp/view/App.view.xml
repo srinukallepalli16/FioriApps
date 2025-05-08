@@ -1,0 +1,14 @@
+<mvc:View controllerName="com.sap.mybankdetails.controller.App"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+    <App id="app">
+        <Page id="page" title="{i18n>title}">
+            <content>
+                <core:Fragment id="bandetails" fragmentName="com.sap.mybankdetails.view.fragments.BankDetails" type="XML"/>
+                <ToolbarSpacer id="toolbar"/>
+                <Button id="findmoredetails" text="{i18n>findmoredetails}" class="sapUiSmallMarginBegin" press="moredetails"/>
+            </content>
+        </Page>
+    </App>
+</mvc:View>

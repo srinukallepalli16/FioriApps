@@ -1,0 +1,10 @@
+{
+    "folders": [
+        {
+            "path": "EmployeeSystem"
+        }
+    ],
+    "settings": {
+        "SAP HANA Database Explorer.UseObjectsDefinitionForSqlGeneration.RetentionTime": 7
+    }
+}

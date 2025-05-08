@@ -1,0 +1,10 @@
+{
+    "folders": [
+        {
+            "path": "CAP_01"
+        }
+    ],
+    "settings": {
+        "SAP HANA Database Explorer.UseObjectsDefinitionForSqlGeneration.RetentionTime": 7
+    }
+}
