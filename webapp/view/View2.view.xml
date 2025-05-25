@@ -1,0 +1,16 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" controllerName="project1.controller.View2"
+  xmlns="sap.m"
+  xmlns:form="sap.ui.layout.form">
+  <Page id="pa23ge">
+    <Button id="butt" press="onButtonPress" text="Button"/>
+    <form:SimpleForm id="simplefomr">
+      <!-- <form:content> -->
+      <!-- </form:content> -->
+      <Label id="_IDGenLabel" text="ID"/>
+      <Text id="_IDGenText" text="{EmployeeID}"/>
+      <Label id="_IDGenLabel2" text="First Name"/>
+      <Text id="_IDGenText3" text="{FirstName}"/>
+       
+    </form:SimpleForm>
+  </Page>
+</mvc:View>

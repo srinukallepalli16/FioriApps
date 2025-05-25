@@ -1,0 +1,22 @@
+<mvc:View controllerName="project1.controller.View1" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m">
+    <Page id="page" title="{i18n>title}">
+        <Table id="table" items="{/Employees}" itemPress="viewscreen" >
+            <columns>
+                <Column id="colun"  >
+                    <Text id="text" text="EmployeeID"/>
+                </Column>
+                <Column id="col1un">
+                    <Text id="te1xt" text="FirstName"/>
+                </Column>
+            </columns>
+            <items>
+               <ColumnListItem id="columnlistitem" type="Navigation" >
+                  <cells>
+                     <Text id="_IDGenText1" text="{EmployeeID}"/>
+                     <Text id="_IDGenText2" text="{FirstName}"/>
+                  </cells>
+               </ColumnListItem>
+            </items>
+        </Table>
+    </Page>
+</mvc:View>
