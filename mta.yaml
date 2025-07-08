@@ -1,0 +1,188 @@
+_schema-version: 3.3.0
+ID: CAPM_03
+description: A simple CAP project.
+version: 1.0.0
+modules:
+  - name: CAPM_03-srv
+    type: nodejs
+    path: gen/srv
+    requires:
+      - name: CAPM_03-db
+      - name: CAPM_03-auth
+      - name: CAPM_03-destination-service
+    provides:
+      - name: srv-api
+        properties:
+          srv-url: ${default-url}
+    parameters:
+      buildpack: nodejs_buildpack
+      instances: 1
+    build-parameters:
+      builder: npm-ci
+
+  - name: CAPM_03-db-deployer
+    type: hdb
+    path: gen/db
+    requires:
+      - name: CAPM_03-db
+    parameters:
+      buildpack: nodejs_buildpack
+
+  - name: CAPM_03-app-content
+    type: com.sap.application.content
+    path: .
+    requires:
+      - name: CAPM_03-repo-host
+        parameters:
+          content-target: true
+    build-parameters:
+      build-result: resources
+      requires:
+        - artifacts:
+            - custombookshopapp.zip
+          name: custombookshopapp
+          target-path: resources/
+
+  - name: custombookshopapp
+    type: html5
+    path: app/custom_bookshop_app
+    build-parameters:
+      build-result: dist
+      builder: custom
+      commands:
+        - npm install
+        - npm run build:cf
+        - npm ci
+        - npm run build
+      supported-platforms:
+        []
+
+  - name: CAPM_03-app-deployer
+    type: com.sap.application.content
+    path: gen
+    build-parameters:
+      build-result: app/
+      requires:
+        - name: custombookshopapp
+          artifacts:
+            - custom_bookshop_app.zip
+          target-path: app/
+
+  - name: CAPM_03
+    type: approuter.nodejs
+    path: app/router
+    parameters:
+      keep-existing-routes: true
+      disk-quota: 256M
+      memory: 256M
+    requires:
+      - name: srv-api
+        group: destinations
+        properties:
+          name: srv-api # must be used in xs-app.json as well
+          url: ~{srv-url}
+          forwardAuthToken: true
+      - name: CAPM_03-auth
+      - name: CAPM_03-html5-runtime
+      - name: CAPM_03-destination-service
+    provides:
+      - name: app-api
+        properties:
+          app-protocol: ${protocol}
+          app-uri: ${default-uri}
+
+  - name: CAPM_03-destinations
+    type: com.sap.application.content
+    requires:
+      - name: CAPM_03-auth
+        parameters:
+          service-key:
+            name: CAPM_03-auth-key
+    build-parameters:
+      no-source: true
+    parameters:
+      content:
+        instance:
+          existing_destinations_policy: update
+          destinations:
+            - Name: CAPM_03-html5-repository
+              ServiceInstanceName: CAPM_03-html5-repo-host
+              ServiceKeyName: CAPM_03-html5-repo-host-key
+              sap.cloud.service: CAPM_03.service
+            - Name: CAPM_03-auth
+              Authentication: OAuth2UserTokenExchange
+              ServiceInstanceName: CAPM_03-auth
+              ServiceKeyName: CAPM_03-auth-key
+              sap.cloud.service: CAPM_03.service
+
+resources:
+  - name: CAPM_03-db
+    type: com.sap.xs.hdi-container
+    parameters:
+      service: hana
+      service-plan: hdi-shared
+
+  - name: CAPM_03-repo-host
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: html5-apps-repo
+      service-name: CAPM_03-html5-service
+      service-plan: app-host
+
+  - name: CAPM_03-destination-service
+    type: org.cloudfoundry.managed-service
+    parameters:
+      config:
+        HTML5Runtime_enabled: false
+        init_data:
+          instance:
+            destinations:
+              - Authentication: NoAuthentication
+                Name: ui5
+                ProxyType: Internet
+                Type: HTTP
+                URL: https://ui5.sap.com
+            existing_destinations_policy: update
+        version: 1.0.0
+      service: destination
+      service-name: CAPM_03-destination-service
+      service-plan: lite
+    requires:
+      - name: srv-api
+        group: destinations
+        properties:
+          name: srv-api # must be used in xs-app.json as well
+          url: ~{srv-url}
+          forwardAuthToken: true
+
+  - name: CAPM_03-auth
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: xsuaa
+      service-plan: application
+      path: ./xs-security.json
+      config:
+        xsappname: CAPM_03-${org}-${space}
+        tenant-mode: dedicated
+        oauth2-configuration:
+          redirect-uris:
+            - https://*~{app-api/app-uri}/**
+    requires:
+      - name: app-api
+
+  - name: CAPM_03-html5-runtime
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: html5-apps-repo
+      service-plan: app-runtime
+
+parameters:
+  deploy_mode: html5-repo
+  enable-parallel-deployments: true
+
+build-parameters:
+  before-all:
+    - builder: custom
+      commands:
+        - npm ci
+        - npx cds build --production

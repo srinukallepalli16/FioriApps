@@ -1,0 +1,35 @@
+###
+#Browse the Data
+GET http://localhost:4004/odata/v4/catalog/Books
+
+### Brows Book ID 
+GET http://localhost:4004/odata/v4/catalog/Books(2)
+
+###
+# Create The New Record
+POST http://localhost:4004/odata/v4/catalog/Books
+Content-Type: application/json
+
+{
+  "ID": 6,
+  "title": "Fantcy",
+  "author": "Srinu",
+  "price": 267,
+  "stock": 7,
+  "location": null
+}
+
+### Update the data
+
+PUT http://localhost:4004/odata/v4/catalog/Books(7)
+Content-Type: application/json
+
+{
+  "title": "Miller",
+  "author": "David",
+  "price": 754,
+  "stock": 28 
+}
+
+### Delete the Record
+DELETE http://localhost:4004/odata/v4/catalog/Books(8)
