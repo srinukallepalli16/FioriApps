@@ -1,0 +1,46 @@
+<mvc:View controllerName="com.app.bookshop.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m">
+    <Page id="page" title="{i18n>title}">
+        <Breadcrumbs id="breadcrumbs" currentLocationText="Add New Item">
+            <Link id="link" text="Master"></Link>
+        </Breadcrumbs>
+        <HBox id="_IDGenHBox1">
+            <VBox id="_IDGenVBox">
+                <Label id="_IDGenLabel" text="Id"></Label>
+                <Input placeholder="Enter your Id" id="Id"></Input>
+            </VBox>
+            <VBox id="_IDGenVBox1">
+                <Label id="_IDGenLabel1" text="Title"></Label>
+                <Input placeholder="Enter Title" id="title"></Input>
+            </VBox>
+            <VBox id="_IDGenVBox2">
+                <Label id="_IDGenLabel2" text="Author"></Label>
+                <Input placeholder="Enter Author Name" id="author"></Input>
+            </VBox>
+        </HBox>
+        <HBox id="hbox2">
+            <VBox id="_IDGenVBox3">
+                <Label id="_IDGenLabel3" text="Price"></Label>
+                <Input placeholder="Enter Price" id="price"></Input>
+            </VBox>
+            <VBox id="_IDGenVBox4">
+                <Label id="_IDGenLabel4" text="Stock"></Label>
+                <Input placeholder="Enter Stock" id="stock"></Input>
+            </VBox>
+            <VBox id="_IDGenVBox5">
+                <Label id="_IDGenLabel5" text="Location"></Label>
+                <Input placeholder="Enter your Location" id="location"></Input>
+            </VBox>
+            <VBox id="_IDGenVBox6">
+                <Label id="_IDGenLabel6" text="Genere"></Label>
+                <Input placeholder="Enter Genere" id="genere"></Input>
+            </VBox>
+        </HBox>
+        <HBox id="hbox6">
+            <VBox id="vbox5">
+                <Button id="button" press="submit" text="Submit"></Button>
+            </VBox>
+        </HBox>
+    </Page>
+</mvc:View>
