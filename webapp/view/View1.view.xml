@@ -1,0 +1,20 @@
+<mvc:View controllerName="resource.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc"  xmlns:form="sap.ui.layout.form"
+    xmlns="sap.m" xmlns:core="sap.ui.core">
+    <Page id="page" title="{i18n>appTitle}">
+      <content>
+      <Select id="_IDGenSelect" change="onLangChange">
+        <items>
+          <core:Item id="core" key="select" text="Select" />
+          <core:Item id="_IDGenItem" key="en" text="English" />
+          <core:Item id="_IDGenItem1" key="hi" text="हिंदी" />
+          <core:Item id="_IDGenItem2" key="te" text="తెలుగు" />
+        </items>
+      </Select>  
+        <VBox alignItems="Center" id="vbox" >
+            <Label  id="firstNameLabel" text="{i18n>firstname}"/>
+            
+        </VBox>
+    </content>
+    </Page>
+</mvc:View>
