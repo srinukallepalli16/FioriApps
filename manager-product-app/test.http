@@ -1,0 +1,17 @@
+###
+# Managers data
+GET http://localhost:4004/odata/v4/manager/Managers
+
+###
+#Employees Data
+GET  http://localhost:4004/odata/v4/manager/Employees
+
+
+###
+#Products
+GET  http://localhost:4004/odata/v4/manager/Products
+
+###
+#ProductSupports
+GET  http://localhost:4004/odata/v4/manager/ProductSupports
+
