@@ -1,0 +1,60 @@
+<mvc:View xmlns:core="sap.ui.core"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.f"
+    xmlns:macros="sap.fe.macros"
+    xmlns:html="http://www.w3.org/1999/xhtml" controllerName="com.app.travel.travelapp1.ext.main.Main">
+    <!-- <Page id="Main" title="{i18n&gt;MainTitle}">
+        <Panel id="filterPanel" headerText="Filter Bar">
+        </Panel>
+        <Panel id="tablePanel" headerText="Travel Booking Application">
+            <macros:Table metaPath="/Travel/@com.sap.vocabularies.UI.v1.LineItem" readOnly="true" id="LineItemTable" filterBar="FilterBar" />
+        </Panel>
+    </Page> -->
+    <f:DynamicPage id="FilterBarDefault" class="sapUiResponsiveContentPadding">
+        <f:title>
+            <f:DynamicPageTitle id="_IDGenDynamicPageTitle1">
+                <f:heading>
+                    <Title id="_IDGenTitle1" text="Filter Bar" level="H2" />
+                </f:heading>
+                <f:snappedContent>
+                    <Panel id="tiles" headerText="Highest Price Tiles">
+                        <HeaderContainer scrollStep="200" showDividers="true" content="{ 
+                          path:'/Travel',
+                          parameters:{
+                             $filter: 'TravelStatus_code eq \'O\' and IsActiveEntity eq false or SiblingEntity/IsActiveEntity eq null',
+                             $orderby: 'TotalPrice desc'  
+                          }
+                         }" > 
+                         <GenericTile header="Travel {TravelID}" subheader="{Description}" press="handlers.tilepress" >
+                            <tileContent>
+                                <TileContent unit="{CurrencyCode_code}" footer="{to_Customer/LastName}" >
+                                    <NumericContent value="{TotalPrice}" valueColor="Good" scale="K"  ></NumericContent>
+                                </TileContent>
+                            </tileContent>
+                         </GenericTile>
+                        </HeaderContainer>
+                    </Panel>
+                    <Panel id="filtercountpanel">
+                        <Text text="{fbConditions>/filtersTextInfo}" />
+                    </Panel>
+                </f:snappedContent>
+            </f:DynamicPageTitle>
+        </f:title>
+        <f:header>
+            <f:DynamicPageHeader id="_IDGenDynamicPageHeader1" pinnable="true">
+                <CheckBox text="CheckBox" id="checkbox" ></CheckBox>
+                <CheckBox text="CheckBox" id="checkbox2" ></CheckBox>
+                <!-- <CheckBox id="checkbox12" text="Checkbox3" ></CheckBox> -->
+                <VBox id="_IDGenVBox1">
+                    <macros:FilterBar id="FilterBar" metaPath="/Travel/@com.sap.vocabularies.UI.v1.SelectionFields" filterChanged=".handlers.onFiltersChanged" />
+                </VBox>
+            </f:DynamicPageHeader>
+        </f:header>
+        <f:content>
+            <macros:Table metaPath="@com.sap.vocabularies.UI.v1.LineItem" readOnly="true" id="LineItemTable" filterBar="FilterBar" />
+        </f:content>
+    </f:DynamicPage>
+</mvc:View>
+<!-- headerText="Conditions from Filter Bar" -->
