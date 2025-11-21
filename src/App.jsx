@@ -1,16 +1,40 @@
-// src/App.jsx
-import React, { useState } from "react";
-import profileImg from "./assets/profile.jpg";
-import resumePdf from "./assets/resume.pdf";
+import React, { useState } from 'react';
+import profileImg from './assets/one.jpg';
+import resumePdf from './assets/resume.pdf';
+
+import {SiHtml5,SiCss3,SiJavascript,SiReact,SiNodedotjs,SiGit,SiGithub,SiSap,} from 'react-icons/si';
+import { FaJava } from 'react-icons/fa';
+
+const skillItems = [
+
+  { name: 'HTML', icon: SiHtml5, color: '#e34f26' },
+  { name: 'CSS', icon: SiCss3,  color: '#1572b6' },
+  { name: 'JavaScript', icon: SiJavascript,  color: '#f7df1e' },
+  { name: 'JAVA', icon: FaJava, color: '#5382a1' },
+
+  { name: 'SAPUI5 / Fiori', icon: SiSap,  color: '#0faaff' },
+  { name: 'React', icon: SiReact,  color: '#61dafb' },
+
+  { name: 'Node.js', icon: SiNodedotjs, level: '78%', color: '#3c873a' },
+  { name: 'SAP ABAP', icon: SiSap,  color: '#0735a4' },
+
+  { name: 'SAP BTP', icon: SiSap,  color: '#0faaff' },
+  { name: 'SAP CAPM', icon: SiSap,  color: '#0faaff' },
+  { name: 'SAP BAS', icon: SiSap, color: '#0faaff' },
+  { name: 'SAP Build Work Zone', icon: SiSap, color: '#0faaff' },
+
+  { name: 'Git', icon: SiGit,  color: '#f1502f' },
+  { name: 'GitHub', icon: SiGithub,  color: '#000000' },
+];
 
 function App() {
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
-  const [status, setStatus] = useState("");
+  const [form, setForm] = useState({ name: '', email: '', message: '' });
+  const [status, setStatus] = useState('');
 
   const handleNavClick = (id) => {
     const el = document.getElementById(id);
     if (el) {
-      el.scrollIntoView({ behavior: "smooth", block: "start" });
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   };
 
@@ -22,16 +46,16 @@ function App() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!form.name || !form.email || !form.message) {
-      setStatus("Please fill all fields.");
+      setStatus('Please fill all fields.');
       return;
     }
-    setStatus("Thanks, your message has been recorded!");
-    setForm({ name: "", email: "", message: "" });
+    setStatus('Thanks, your message has been recorded!');
+    setForm({ name: '', email: '', message: '' });
   };
 
   return (
     <div className="page">
-      {/* HEADER */}
+      {}
       <header className="top-nav">
         <div className="logo-area">
           <div className="logo-circle">SK</div>
@@ -40,13 +64,13 @@ function App() {
 
         <nav className="menu">
           {[
-            ["Home", "home"],
-            ["About", "about"],
-            ["Skills", "skills"],
-            ["Education", "education"],
-            ["Work", "work"],
-            ["Experience", "experience"],
-            ["Contact", "contact"],
+            ['Home', 'home'],
+            ['About', 'about'],
+            ['Skills', 'skills'],
+            ['Education', 'education'],
+            ['Work', 'work'],
+            ['Experience', 'experience'],
+            ['Contact', 'contact'],
           ].map(([label, id]) => (
             <button
               key={id}
@@ -59,16 +83,18 @@ function App() {
         </nav>
       </header>
 
-      {/* HERO SECTION */}
+      {}
       <section id="home" className="hero">
         <div className="hero-left">
-          <p className="hero-tag">Hi There,</p>
+          
+          {/* <p className="hero-tag">Hi,</p> */}
+          <h1>Hi,</h1>
           <h1 className="hero-title">
-            I&apos;m <span className="hero-name">Srinu</span>{" "}
+            I'am <span className="hero-name">Srinu</span>{' '}
             <span className="hero-name hero-name-accent">Kallepalli</span>
           </h1>
           <p className="hero-sub">
-            I am into{" "}
+            I am into{' '}
             <span className="hero-highlight">
               SAP UI5 / Fiori & Web Development
             </span>
@@ -79,7 +105,7 @@ function App() {
               href="#about"
               onClick={(e) => {
                 e.preventDefault();
-                handleNavClick("about");
+                handleNavClick('about');
               }}
               className="btn-primary"
             >
@@ -91,45 +117,30 @@ function App() {
           </div>
 
           <div className="hero-social">
-            {/* Replace # with your real links */}
-            <a
-              href="https://www.linkedin.com/in/srinu-kallepalli-b44560260/"
-              className="social-circle"
-              aria-label="LinkedIn"
-              target="_blank"
-            >
+            {}
+            <a href="https://www.linkedin.com/in/srinu-kallepalli-b44560260/" target="_blank" className="social-circle" aria-label="LinkedIn">
               in
             </a>
-            <a
-              href="https://github.com/srinukallepalli16"
-              className="social-circle"
-              aria-label="GitHub"
-              target="_blank"
-            >
+            <a href="https://github.com/srinukallepalli16" target="_blank" className="social-circle" aria-label="GitHub">
               GH
             </a>
           </div>
         </div>
-
         <div className="hero-right">
           <div className="hero-photo-wrap">
-            <img
-              src={profileImg}
-              alt="Srinu Kallepalli"
-              className="hero-photo"
-            />
+            <img src={profileImg} alt="Srinu Kallepalli" className="hero-photo" />
           </div>
         </div>
       </section>
 
-      {/* ABOUT */}
+      {}
       <section id="about" className="section">
         <h2 className="section-title">About</h2>
         <p className="section-text">
-          I&apos;m a SAP UI5 / Fiori Developer and web developer, focused on
-          building clean, responsive and user-friendly applications. I have
-          hands-on experience with SAPUI5, Fiori, SAP BTP, CAPM, and front-end
-          development using React, JavaScript, HTML and CSS.
+          I'm a SAP UI5 / Fiori Developer and web developer, focused on building
+          clean, responsive and user-friendly applications. I have hands-on
+          experience with SAPUI5, Fiori, SAP BTP, CAPM, and front-end development
+          using React, JavaScript, HTML and CSS.
         </p>
         <p className="section-text">
           I enjoy solving real business problems and creating dashboards, custom
@@ -137,30 +148,33 @@ function App() {
         </p>
       </section>
 
-      {/* SKILLS */}
-      <section id="skills" className="section">
-        <h2 className="section-title">Skills</h2>
-        <div className="chip-grid">
-          {[
-            "SAP UI5 / Fiori",
-            "JavaScript",
-            "HTML & CSS",
-            "React.js",
-            "Node.js & Express",
-            "SAP BTP & BAS",
-            "CAPM (Cloud Application Programming Model)",
-            "SAP HANA (Basic)",
-            "OData Services",
-            "Git & GitHub",
-          ].map((skill) => (
-            <span key={skill} className="chip">
-              {skill}
-            </span>
-          ))}
+      {}
+      <section id="skills" className="section skills-section">
+        <h2 className="section-title">My Skills</h2>
+
+        <div className="skills-carousel">
+          <div className="skills-track">
+            {}
+            {[...skillItems, ...skillItems].map((skill, index) => {
+              const Icon = skill.icon;
+              return (
+                <div key={skill.name + index} className="skill-card">
+                  <div className="skill-card-icon-wrap">
+                    <Icon
+                      className="skill-card-icon"
+                      style={{ color: skill.color }}
+                    />
+                  </div>
+                  <div className="skill-card-name">{skill.name}</div>
+                  <div className="skill-card-level">{skill.level}</div>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </section>
 
-      {/* EDUCATION */}
+      {}
       <section id="education" className="section">
         <h2 className="section-title">Education</h2>
         <div className="card">
@@ -170,7 +184,7 @@ function App() {
         </div>
       </section>
 
-      {/* WORK / PROJECTS */}
+      {}
       <section id="work" className="section">
         <h2 className="section-title">Work / Projects</h2>
 
@@ -178,14 +192,12 @@ function App() {
           <div className="card">
             <h3>VKT Ticketing Tool</h3>
             <p className="muted">
-              Internal ticketing application for handling issues and requests
-              within the company.
+              Internal ticketing application for handling issues and requests within
+              the company.
             </p>
             <ul className="list">
               <li>Built using React.js, Node.js, Express, HTML, CSS.</li>
-              <li>
-                Implemented ticket creation, assignment, and status tracking.
-              </li>
+              <li>Implemented ticket creation, assignment, and status tracking.</li>
               <li>Role-based access for Admin and Employee.</li>
               <li>Search and filter for tickets with a clean dashboard UI.</li>
             </ul>
@@ -199,8 +211,8 @@ function App() {
           <div className="card">
             <h3>CAPM Side-by-Side Extension</h3>
             <p className="muted">
-              SAP CAPM application deployed on BTP, extending S/4HANA with
-              custom UI and logic.
+              SAP CAPM application deployed on BTP, extending S/4HANA with custom UI
+              and logic.
             </p>
             <ul className="list">
               <li>Designed CAP services and data model with SAP HANA.</li>
@@ -216,7 +228,7 @@ function App() {
         </div>
       </section>
 
-      {/* EXPERIENCE */}
+      {}
       <section id="experience" className="section">
         <h2 className="section-title">Experience</h2>
         <div className="card">
@@ -229,28 +241,23 @@ function App() {
           </div>
           <ul className="list">
             <li>
-              Worked on enhancement and new features for custom Fiori
-              applications.
+              Worked on enhancement and new features for custom Fiori applications.
             </li>
             <li>Developed SAPUI5 screens with OData and JSON models.</li>
-            <li>
-              Created responsive, mobile-friendly UI5 apps for business users.
-            </li>
-            <li>
-              Used Git/GitHub for code version control in a team environment.
-            </li>
+            <li>Created responsive, mobile-friendly UI5 apps for business users.</li>
+            <li>Used Git/GitHub for code version control in a team environment.</li>
             <li>Developed applications on SAP BTP using CAPM and HANA.</li>
           </ul>
         </div>
       </section>
 
-      {/* CONTACT */}
+      {}
       <section id="contact" className="section">
         <h2 className="section-title">Contact</h2>
         <p className="section-text">
-          If you&apos;re looking for a SAP UI5 / Fiori Developer or full-stack
-          CAPM developer, feel free to contact me. I&apos;m open to roles across
-          India – remote or on-site.
+          If you&apos;re looking for a SAP UI5 / Fiori Developer or full-stack CAPM
+          developer, feel free to contact me. I&apos;limit open to roles across India –
+          remote or on-site.
         </p>
 
         <div className="card contact-card">
@@ -299,7 +306,7 @@ function App() {
         </div>
 
         <p className="section-text small">
-          Or mail me directly at{" "}
+          Or mail me directly at{' '}
           <a href="mailto:srinukallepalli16@gmail.com">
             srinukallepalli16@gmail.com
           </a>
@@ -312,5 +319,4 @@ function App() {
     </div>
   );
 }
-
 export default App;
