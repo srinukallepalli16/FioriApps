@@ -189,7 +189,7 @@ function App() {
 
         <div className="card-grid">
           <div className="card">
-            <h3>VKT Ticketing Tool</h3>
+            <h3>Ticketing Tool Web based Application</h3>
             <p className="muted">
               Internal ticketing application for handling issues and requests
               within the company.
