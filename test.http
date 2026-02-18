@@ -1,0 +1,42 @@
+###
+
+# Browse the records
+
+GET http://localhost:4004/odata/v4/catalog/Book
+
+
+###
+#create the new record
+
+POST http://localhost:4004/odata/v4/catalog/Book
+Content-Type: application/json
+
+{
+    "Id":4,
+    "author": "David",
+    "location": "Guntur",
+    "price": "450",
+    "stock": 34,
+    "title": "Srinu"
+}
+
+###
+
+#Update the record
+
+PUT http://localhost:4004/odata/v4/catalog/Book(4)
+Content-Type: application/json
+
+{
+    "author": "Virat",
+    "location": "Delhi",
+    "price": "450",
+    "stock": 34,
+    "title": "Cricket"
+}
+
+###
+
+# Delete the Record
+
+DELETE http://localhost:4004/odata/v4/catalog/Book(12)
