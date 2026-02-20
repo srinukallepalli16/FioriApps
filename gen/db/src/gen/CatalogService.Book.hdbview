@@ -1,0 +1,8 @@
+VIEW CatalogService_Book AS SELECT
+  Book_0.Id,
+  Book_0.title,
+  Book_0.author,
+  Book_0.price,
+  Book_0.stock,
+  Book_0.location
+FROM my_bookshop_Book AS Book_0

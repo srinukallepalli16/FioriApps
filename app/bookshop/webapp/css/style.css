@@ -1,0 +1,7 @@
+/* Enter your custom styles here */
+
+.myBoxBoarder{
+    border:1px solid #ccc;
+    padding:10px;
+    border-radius: 5px;
+}

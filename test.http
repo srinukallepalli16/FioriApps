@@ -1,0 +1,19 @@
+###
+#Browse the records
+
+GET http://localhost:4004/odata/v4/catalog/Book
+
+###
+#Create New Record
+
+POST http://localhost:4004/odata/v4/catalog/Book
+Content-Type: application/json
+
+{
+    "Id": 5,
+    "author": "David Bio",
+    "location": "Guntur",
+    "price": "67",
+    "stock": 8,
+    "title": "David"
+}
