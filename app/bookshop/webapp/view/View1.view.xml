@@ -204,7 +204,7 @@
                                 <HBox id="_IDGenHBox11" class="sapUiSmallMarginTop">
                                     <VBox id="_IDGenVBox11" class="sapUiSmallMarginBegin">
                                         <Label id="_IDGen1Label2" text="ID"/>
-                                        <Input id="id1" />
+                                        <Input id="id1" editable="false"/>
                                     </VBox>
                                     <VBox id="_IDGenVBox12" class="sapUiSmallMarginBegin">
                                         <Label id="_IDGenLabel13" text="Title"/>

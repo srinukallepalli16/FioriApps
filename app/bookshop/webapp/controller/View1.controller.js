@@ -106,11 +106,11 @@ sap.ui.define([
                 }
             })
         },
-        onUpdateBook: function () {
-            var oupdate_model = this.getOwnerComponent().getModel();
+        onEditPress: function () {
             var oData = this.oSelectedContext.getObject();
             MessageToast.show(`Update Action for ID:${oData.Id}`);
             this.onEditBookPressed();
+            var oupdate_model = this.getOwnerComponent().getModel();  
             var oFilter = [
                 new Filter("Id", FilterOperator.EQ, oData.Id)
             ];
@@ -121,13 +121,13 @@ sap.ui.define([
                 if (aContexts.length > 0) {
                     aContexts.forEach((oContext) => {
                         var oUser = oContext.getObject();
-                        let id = this.getView().byId("id1").setValue(oUser.Id);
-                        id.setEnabled(false);
-                        let title = this.getView().byId("title1").setValue(oUser.title);
-                        let author = this.getView().byId("author1").setValue(oUser.author);
-                        let price = this.getView().byId("price1").setValue(oUser.price);
-                        let stock = this.getView().byId("stock1").setValue(oUser.stock);
-                        let location = this.getView().byId("location1").setValue(oUser.location);
+                        //id.setEnabled(false);
+                        this.getView().byId("title1").setValue(oUser.title);
+                        this.getView().byId("author1").setValue(oUser.author);
+                        this.getView().byId("price1").setValue(oUser.price);
+                        this.getView().byId("stock1").setValue(oUser.stock);
+                        this.getView().byId("location1").setValue(oUser.location);
+                        this.getView().byId("id1").setValue(oUser.Id);
                     })
                 }
                 else {
@@ -143,11 +143,12 @@ sap.ui.define([
             var author = this.getView().byId("author1").getValue();
             var price = this.getView().byId("price1").getValue();
             var stock = this.getView().byId("stock1").getValue();
-            var locations = this.getView().byId("location1").getValue();
+            var location = this.getView().byId("location1").getValue();
 
             var updateModel = this.getView().getModel();
             var sPath = "/Book('"+ id +"')";
-            var oContext = updateModel.bindList(sPath).getBoundContext();
+            // var oContext = updateModel.bindList(sPath).getBoundContext();
+            var oContext = updateModel.bindContext(sPath).getBoundContext();
             oContext.setProperty("title",title);
             oContext.setProperty("author",author);
             oContext.setProperty("price",price);

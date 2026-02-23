@@ -6,11 +6,11 @@ GET http://localhost:4004/odata/v4/catalog/Book
 ###
 #Create New Record
 
-POST http://localhost:4004/odata/v4/catalog/Book
+PUT http://localhost:4004/odata/v4/catalog/Book
 Content-Type: application/json
 
 {
-    "Id": 5,
+    "Id": 4,
     "author": "David Bio",
     "location": "Guntur",
     "price": "67",
