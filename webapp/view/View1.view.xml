@@ -1,0 +1,7 @@
+<mvc:View controllerName="ui51.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m">
+    <Page id="page" title="{i18n>title}">
+      <Button id="_IDGenButton" text="Page 1" press=".onfirstpage"/>
+    </Page>
+</mvc:View>

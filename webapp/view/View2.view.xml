@@ -1,0 +1,13 @@
+<mvc:View xmlns:mvc = "sap.ui.core.mvc" xmlns="sap.m" controllerName="ui51.controller.View2">
+
+<Shell id="_IDGenShell1" >
+  <App id="_IDGenApp" >
+    <pages>
+      <Page id="_IDGenPage" title="Page2" navButtonPress="navback" >
+          <Button id="_IDGenButton1" press=".onhomePage" text="Home Page" ></Button>
+      </Page>
+    </pages>
+  </App>
+</Shell>
+
+</mvc:View>
