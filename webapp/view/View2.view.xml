@@ -1,0 +1,9 @@
+<mvc:View xmlns:mvc= "sap.ui.core.mvc" controllerName="routing.controller.View2" xmlns="sap.m">
+<App id="_IDGenApp1" >
+  <pages>
+     <Page id="_IDGenPage" >
+        <Button id="_IDGenButton1" text="Home View" press=".onHomeView"  ></Button>
+     </Page>
+  </pages>
+</App>
+</mvc:View>
