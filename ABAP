@@ -1,0 +1,422 @@
+*&---------------------------------------------------------------------*
+*& Include          ZCUSTOM_SAP_ALL_REPORT_FORMS
+*&---------------------------------------------------------------------*
+*&---------------------------------------------------------------------*
+*& Form GET_USERS
+*&---------------------------------------------------------------------*
+*& text
+*&---------------------------------------------------------------------*
+*& -->  p1        text
+*& <--  p2        text
+*&---------------------------------------------------------------------*
+
+*&---------------------------------------------------------------------*
+*& Include ZCUSTOM_SAP_ALL_REPORT_TOP_1
+*&---------------------------------------------------------------------*
+
+*&---------------------------------------------------------------------*
+*& Report ZCUSTOM_SAP_ALL_REPORT
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT ZCUSTOM_SAP_ALL_REPORT.
+
+*INCLUDE ZCUSTOM_SAP_ALL_REPORT_TOP.
+INCLUDE ZCUSTOM_SAP_ALL_REPORT_TOP_1.
+INCLUDE ZCUSTOM_SAP_ALL_REPORT_SEL.
+INCLUDE ZCUSTOM_SAP_ALL_REPORT_FORMS.
+"Slection Screen Include
+
+START-OF-SELECTION.
+PERFORM GET_DATA.
+*PERFORM GET_PROFILES.
+*PERFORM GET_FINAL_DATA.
+PERFORM MAIL_DATA.
+*PERFORM MAIL_BODY.
+PERFORM SEND_EMAIL.
+
+END-OF-SELECTION.
+PERFORM DISPLAY_DATA.
+
+
+
+TYPES:BEGIN OF LTY_USERS,
+        BNAME TYPE XUBNAME,
+        MODDA TYPE XUMODDATE,
+        MODBE TYPE XUMODIFIER,
+*        PROFILE TYPE XUPROFILE,
+      END OF LTY_USERS.
+
+
+TYPES:BEGIN OF LTY_PROFILES,
+        BNAME   TYPE XUBNAME,
+        PROFILE TYPE XUPROFILE,
+      END OF LTY_PROFILES.
+
+
+TYPES:BEGIN OF LTY_FINAL,
+        BNAME   TYPE XUBNAME,
+        MODDA   TYPE XUMODDATE,
+        MODBE   TYPE XUMODIFIER,
+        PROFILE TYPE XUPROFILE,
+      END OF LTY_FINAL.
+
+DATA:LV_DATE TYPE XUMODDATE.
+
+DATA:LT_FINAL TYPE TABLE OF LTY_FINAL,
+     LS_FINAL TYPE LTY_FINAL.
+DATA:LT_PROF TYPE TABLE OF LTY_PROFILES,
+     LS_PROF TYPE LTY_PROFILES.
+DATA:LT_USERS TYPE TABLE OF LTY_USERS,
+     LS_USERS TYPE LTY_USERS.
+
+DATA: LT_MAIL TYPE TABLE OF LTY_FINAL,
+      LS_MAIL TYPE LTY_FINAL.
+
+ DATA: LT_TEXT TYPE SOLI_TAB,
+        LS_TEXT TYPE SOLI.
+
+ DATA:LV_RESULT TYPE BOOLEAN.
+
+ DATA:LV_MAIL TYPE AD_SMTPADR.
+
+*&---------------------------------------------------------------------*
+*& Include          ZCUSTOM_SAP_ALL_REPORT_SEL
+*&---------------------------------------------------------------------*
+SELECTION-SCREEN:BEGIN OF BLOCK B1 WITH FRAME TITLE TEXT-001.
+  SELECT-OPTIONS:S_DATE FOR LV_DATE OBLIGATORY NO-EXTENSION.
+*  PARAMETERS:P_MAIL TYPE AD_SMTPADR.
+  SELECT-OPTIONS:S_MAIL FOR LV_MAIL NO INTERVALS.
+   DATA:LWS_MAIL LIKE LINE OF S_MAIL.
+SELECTION-SCREEN:END OF BLOCK B1.
+
+
+
+
+FORM GET_DATA .
+*  SELECT BNAME MODDA MODBE FROM USR04 INTO TABLE LT_USERS WHERE MODDA IN S_DATE.
+*  IF LT_USERS IS NOT INITIAL.
+*    SELECT BNAME PROFILE FROM UST04 INTO TABLE LT_PROF FOR ALL ENTRIES IN LT_USERS WHERE BNAME = LT_USERS-BNAME. "AND ( PROFILE = 'SAP_ALL' OR PROFILE = 'SAP_NEW' ) .
+*  ENDIF.
+*  LOOP AT LT_USERS INTO LS_USERS.
+*    LOOP AT LT_PROF INTO LS_PROF WHERE BNAME = LS_USERS-BNAME.
+**     READ TABLE LT_PROF INTO LS_PROF WITH KEY BNAME = LS_USERS-BNAME.
+*      LS_FINAL-BNAME = LS_USERS-BNAME.
+*      LS_FINAL-MODDA = LS_USERS-MODDA.
+*      LS_FINAL-MODBE = LS_USERS-MODBE.
+*      LS_FINAL-PROFILE = LS_PROF-PROFILE.
+*      APPEND LS_FINAL TO LT_FINAL.
+*      CLEAR:LS_FINAL.
+*    ENDLOOP.
+*  ENDLOOP.
+  SELECT A~BNAME, A~MODDA, A~MODBE, B~PROFILE
+  FROM USR04 AS A INNER JOIN UST04 AS B
+  ON A~BNAME = B~BNAME
+  INTO TABLE @LT_FINAL WHERE A~MODDA IN @S_DATE.
+ENDFORM.
+*&---------------------------------------------------------------------*
+*& Form GET_PROFILES
+*&---------------------------------------------------------------------*
+*& text
+*&---------------------------------------------------------------------*
+*& -->  p1        text
+*& <--  p2        text
+*&---------------------------------------------------------------------*
+"FORM GET_PROFILES .
+*  IF LT_USERS IS NOT INITIAL.
+*    SELECT BNAME PROFILE FROM UST04 INTO TABLE LT_PROF FOR ALL ENTRIES IN LT_USERS WHERE BNAME = LT_USERS-BNAME.
+*  ENDIF.
+"ENDFORM.
+*&---------------------------------------------------------------------*
+*& Form GET_FINAL_DATA
+*&---------------------------------------------------------------------*
+*& text
+*&---------------------------------------------------------------------*
+*& -->  p1        text
+*& <--  p2        text
+*&---------------------------------------------------------------------*
+*FORM GET_FINAL_DATA .
+*  LOOP AT LT_USERS INTO LS_USERS.
+*    LOOP AT LT_PROF INTO LS_PROF WHERE BNAME = LS_USERS-BNAME.
+*      LS_FINAL-BNAME = LS_USERS-BNAME.
+*      LS_FINAL-MODDA = LS_USERS-MODDA.
+*      LS_FINAL-MODBE = LS_USERS-MODBE.
+*      LS_FINAL-PROFILE = LS_PROF-PROFILE.
+*      APPEND LS_FINAL TO LT_FINAL.
+*      CLEAR:LS_FINAL.
+*    ENDLOOP.
+*  ENDLOOP.
+"ENDFORM.
+*&---------------------------------------------------------------------*
+*& Form MAIL_DATA
+*&---------------------------------------------------------------------*
+*& text
+*&---------------------------------------------------------------------*
+*& -->  p1        text
+*& <--  p2        text
+*&---------------------------------------------------------------------*
+FORM MAIL_DATA .
+  LOOP AT LT_FINAL INTO LS_FINAL.
+    IF LS_FINAL-PROFILE = 'SAP_ALL' OR LS_FINAL-PROFILE = 'SAP_NEW'.
+      APPEND LS_FINAL TO LT_MAIL.
+    ENDIF.
+  ENDLOOP.
+ENDFORM.
+*&---------------------------------------------------------------------*
+*& Form MAIL_BODY
+*&---------------------------------------------------------------------*
+*& text
+*&---------------------------------------------------------------------*
+*& -->  p1        text
+*& <--  p2        text
+*&---------------------------------------------------------------------*
+*FORM MAIL_BODY .
+*  LS_TEXT-LINE = 'Hi Team,'.
+*  APPEND LS_TEXT TO LT_TEXT.
+*  CLEAR LS_TEXT.
+*
+*  APPEND LS_TEXT TO LT_TEXT.
+*
+*  LS_TEXT-LINE = 'Below Users are assigned with critical roles (SAP_ALL/SAP_NEW):'.
+*  APPEND LS_TEXT TO LT_TEXT.
+*  CLEAR LS_TEXT.
+*
+*  APPEND LS_TEXT TO LT_TEXT.
+*
+*  LS_TEXT-LINE = 'UserID     Profile     Date'.
+*  APPEND LS_TEXT TO LT_TEXT.
+*  CLEAR LS_TEXT.
+*
+*  LS_TEXT-LINE = '----------------------------------------'.
+*  APPEND LS_TEXT TO LT_TEXT.
+*  CLEAR LS_TEXT.
+*
+*  LOOP AT LT_MAIL INTO LS_MAIL.
+*    LS_TEXT-LINE = |{ LS_MAIL-BNAME }    { LS_MAIL-PROFILE }    { LS_MAIL-MODDA }|.
+*    APPEND LS_TEXT TO LT_TEXT.
+*    CLEAR LS_TEXT.
+*  ENDLOOP.
+*  APPEND LS_TEXT TO LT_TEXT.
+*
+*  LS_TEXT-LINE = 'Regards,'.
+*  APPEND LS_TEXT TO LT_TEXT.
+*  CLEAR LS_TEXT.
+*
+*  LS_TEXT-LINE = 'Srinu Kallepalli'.
+*  APPEND LS_TEXT TO LT_TEXT.
+*  CLEAR LS_TEXT.
+*ENDFORM.
+*&---------------------------------------------------------------------*
+*& Form SEND_EMAIL
+*&---------------------------------------------------------------------*
+*& text
+*&---------------------------------------------------------------------*
+*& -->  p1        text
+*& <--  p2        text
+*&---------------------------------------------------------------------*
+FORM SEND_EMAIL .
+  LS_TEXT-LINE = 'Hi Team,'(007).
+  APPEND LS_TEXT TO LT_TEXT.
+  CLEAR LS_TEXT.
+
+  APPEND LS_TEXT TO LT_TEXT.
+
+  LS_TEXT-LINE = 'Below Users are assigned with critical roles (SAP_ALL/SAP_NEW):'(008).
+  APPEND LS_TEXT TO LT_TEXT.
+  CLEAR LS_TEXT.
+
+  APPEND LS_TEXT TO LT_TEXT.
+
+  LS_TEXT-LINE = 'UserID     Profile    Date'(009).
+  APPEND LS_TEXT TO LT_TEXT.
+  CLEAR LS_TEXT.
+
+  LS_TEXT-LINE = '----------------------------------------'(010).
+  APPEND LS_TEXT TO LT_TEXT.
+  CLEAR LS_TEXT.
+
+  LOOP AT LT_MAIL INTO LS_MAIL.
+    LS_TEXT-LINE = |{ LS_MAIL-BNAME }    { LS_MAIL-PROFILE }    { LS_MAIL-MODDA }|.
+    APPEND LS_TEXT TO LT_TEXT.
+    CLEAR LS_TEXT.
+  ENDLOOP.
+  APPEND LS_TEXT TO LT_TEXT.
+
+  LS_TEXT-LINE = 'Thanks & Regards,'(011).
+  APPEND LS_TEXT TO LT_TEXT.
+  CLEAR LS_TEXT.
+
+  LS_TEXT-LINE = 'SAP System'(012).
+  APPEND LS_TEXT TO LT_TEXT.
+  CLEAR LS_TEXT.
+
+  IF LT_MAIL IS NOT INITIAL. "AND S_MAIL <> ''.
+*    IF  S_MAIL <> ''.
+    TRY.
+        DATA:LO_BCS TYPE REF TO CL_BCS.
+        CALL METHOD CL_BCS=>CREATE_PERSISTENT
+          RECEIVING
+            RESULT = LO_BCS.
+      CATCH CX_SEND_REQ_BCS.
+    ENDTRY.
+*
+*  "CREATE THE EXTERNAL USER
+*    DATA:LV_MAIL_ADDRESS TYPE AD_SMTPADR VALUE P_MAIL.
+    DATA:LO_EXTERNAL_MAIL TYPE REF TO CL_CAM_ADDRESS_BCS.
+    LOOP AT S_MAIL INTO LWS_MAIL WHERE SIGN = 'I' AND OPTION = 'EQ'.
+
+      TRY.
+          LO_EXTERNAL_MAIL =
+           CL_CAM_ADDRESS_BCS=>CREATE_INTERNET_ADDRESS( LWS_MAIL-LOW ).
+*          EXPORTING
+*            I_ADDRESS_STRING = P_MAIL
+*           I_ADDRESS_NAME   =
+*           I_INCL_SAPUSER   =
+*          RECEIVING
+*            RESULT           = LO_EXTERNAL_MAIL.
+        CATCH CX_ADDRESS_BCS.
+          CONTINUE.
+      ENDTRY.
+*
+*  "ADD THE EXTERNAL USER AS RECIPIENT
+
+      TRY.
+          CALL METHOD LO_BCS->ADD_RECIPIENT( I_RECIPIENT = LO_EXTERNAL_MAIL ).
+*          EXPORTING
+*            I_RECIPIENT = LO_EXTERNAL_MAIL
+*           I_EXPRESS   =
+*           I_COPY      =
+*           I_BLIND_COPY =
+*           I_NO_FORWARD =
+          .
+        CATCH CX_SEND_REQ_BCS.
+      ENDTRY.
+    ENDLOOP.
+    DATA:LV_SUBJECT TYPE SO_OBJ_DES VALUE 'Alert: Critical Role Assignment Notification'.
+    DATA:LO_DOCUMENT TYPE REF TO CL_DOCUMENT_BCS.
+    TRY.
+        CALL METHOD CL_DOCUMENT_BCS=>CREATE_DOCUMENT
+          EXPORTING
+            I_TYPE    = 'RAW'
+            I_SUBJECT = LV_SUBJECT
+*           I_LENGTH  =
+*           I_LANGUAGE      = SPACE
+*           I_IMPORTANCE    =
+*           I_SENSITIVITY   =
+            I_TEXT    = LT_TEXT
+*           I_HEX     =
+*           I_HEADER  =
+*           I_SENDER  =
+*           IV_VSI_PROFILE  =
+*           IV_VSI_SCAN_OFF =
+          RECEIVING
+            RESULT    = LO_DOCUMENT.
+      CATCH CX_DOCUMENT_BCS.
+    ENDTRY.
+*  "SET THE DOCUMENT
+    TRY.
+        CALL METHOD LO_BCS->SET_DOCUMENT
+          EXPORTING
+            I_DOCUMENT = LO_DOCUMENT.
+      CATCH CX_SEND_REQ_BCS.
+    ENDTRY.
+*
+*  "ACTIVATE/DEACTIVATE IMMEDIATE SENDING
+    TRY.
+        CALL METHOD LO_BCS->SET_SEND_IMMEDIATELY
+          EXPORTING
+            I_SEND_IMMEDIATELY = ''.
+      CATCH CX_SEND_REQ_BCS.
+    ENDTRY.
+*
+*  "SEND THE MAIL
+*  DATA:LV_RESULT TYPE BOOLEAN.
+    TRY.
+        CALL METHOD LO_BCS->SEND
+*    EXPORTING
+*      I_WITH_ERROR_SCREEN = SPACE
+          RECEIVING
+            RESULT = LV_RESULT.
+      CATCH CX_SEND_REQ_BCS.
+    ENDTRY.
+*
+    IF LV_RESULT = 'X'.
+      MESSAGE S015(ZMESSAGE_3).
+      COMMIT WORK.
+    ENDIF.
+*    ENDIF.
+  ELSE.
+    MESSAGE E016(ZMESSAGE_3).
+  ENDIF.
+ENDFORM.
+*&---------------------------------------------------------------------*
+*& Form FIELDCATALOG
+*&---------------------------------------------------------------------*
+*& text
+*&---------------------------------------------------------------------*
+*& -->  p1        text
+*& <--  p2        text
+*&---------------------------------------------------------------------*
+FORM FIELDCATALOG .
+
+ENDFORM.
+*&---------------------------------------------------------------------*
+*& Form DISPLAY_DATA
+*&---------------------------------------------------------------------*
+*& text
+*&---------------------------------------------------------------------*
+*& -->  p1        text
+*& <--  p2        text
+*&---------------------------------------------------------------------*
+FORM DISPLAY_DATA .
+  DATA:LT_FIELDCAT TYPE SLIS_T_FIELDCAT_ALV.
+  CALL FUNCTION 'REUSE_ALV_FIELDCATALOG_MERGE'
+    EXPORTING
+*     I_PROGRAM_NAME         =
+*     I_INTERNAL_TABNAME     =
+      I_STRUCTURE_NAME       = 'ZUSERS_PROFILE'
+*     I_CLIENT_NEVER_DISPLAY = 'X'
+*     I_INCLNAME             =
+*     I_BYPASSING_BUFFER     =
+*     I_BUFFER_ACTIVE        =
+    CHANGING
+      CT_FIELDCAT            = LT_FIELDCAT
+    EXCEPTIONS
+      INCONSISTENT_INTERFACE = 1
+      PROGRAM_ERROR          = 2
+      OTHERS                 = 3.
+  IF SY-SUBRC <> 0.
+* Implement suitable error handling here
+  ENDIF.
+
+*
+*  DATA:LT_FILTER TYPE SLIS_T_FILTER_ALV,
+*       LS_FILTER TYPE SLIS_FILTER_ALV.
+
+*  LS_FILTER-FIELDNAME = 'PROFILE'.
+*  LS_FILTER-SIGN0 = 'I'.
+*  LS_FILTER-OPTIO = 'EQ'.
+*  LS_FILTER-VALUF_INT = 'SAP_ALL'.
+*  APPEND LS_FILTER TO LT_FILTER.
+*  CLEAR:LS_FILTER.
+*
+*  LS_FILTER-FIELDNAME = 'PROFILE'.
+*  LS_FILTER-SIGN0 = 'I'.
+*  LS_FILTER-OPTIO = 'EQ'.
+*  LS_FILTER-VALUF_INT = 'SAP_NEW'.
+*  APPEND LS_FILTER TO LT_FILTER.
+*  CLEAR:LS_FILTER.
+
+  CALL FUNCTION 'REUSE_ALV_GRID_DISPLAY'
+    EXPORTING
+      IT_FIELDCAT   = LT_FIELDCAT
+      "IT_FILTER     = LT_FILTER
+    TABLES
+      T_OUTTAB      = LT_MAIL
+    EXCEPTIONS
+      PROGRAM_ERROR = 1
+      OTHERS        = 2.
+  IF SY-SUBRC <> 0.
+* Implement suitable error handling here
+  ENDIF.
+ENDFORM.
