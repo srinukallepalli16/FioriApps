@@ -1,0 +1,83 @@
+<mvc:View controllerName="ZEMPCRUD.controller.Main" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc"
+	displayBlock="true" xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form">
+	<Shell>
+		<App>
+			<pages>
+				<Page title="{i18n>title}">
+					<content>
+						<Panel>
+							<VBox class="sapUiSmallMargin">
+								<f:SimpleForm id="SimpleFormDisplay354" editable="false" layout="ResponsiveGridLayout" labelSpanXL="3" labelSpanL="3" labelSpanM="3"
+									labelSpanS="12" adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4" emptySpanM="4" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="2"
+									singleContainerFullSize="false">
+									<f:content>
+										<core:Title text=" "/>
+										<Label class="sapUiSmallMargin" text="Employee Id:"/>
+										<Input id="empid" width="10rem"/>
+										<Label class="sapUiSmallMargin" text="Employee Name:"/>
+										<Input id="emname" width="10rem"/>
+										<!--<Label class="sapUiSmallMargin" text="Email:"/>-->
+										<!--<Input id="empemail" width="10rem"/>-->
+										<core:Title text=" "/>
+										<Label class="sapUiSmallMargin" text="Contact No:"/>
+										<Input id="empcontactno" width="10rem"/>
+										<Label class="sapUiSmallMargin" text="Designation:"/>
+										<Input id="empdesignation" width="10rem"/>
+										<Label class="sapUiSmallMargin" text="Manager:"/>
+										<Input id="empworkingunder" width="10rem"/>
+									</f:content>
+								</f:SimpleForm>
+							</VBox>
+							<OverflowToolbar>
+								<ToolbarSpacer/>
+								<Button text="Create" id="createbtn" type="Accept" class="sapUiSmallMarginBegin" press="onCreateButton"/>
+								<Button text="Update" id="updatebtn" visible="false" class="sapUiSmallMarginBegin" press="onUpdateButton"/>
+								<!-- type="Attention"-->
+								<Button text="Clear" type="Emphasized" class="sapUiSmallMarginBegin" press="onClearButton"/>
+							</OverflowToolbar>
+						</Panel>
+						<Panel>
+							<Table id="tableid" items="{/EmpDetailsSet}" mode="SingleSelectLeft" selectionChange="onSelectionChange" >
+								<columns>
+									<Column>
+										<Label text="Employee NO"/>
+									</Column>
+									<Column>
+										<Label text="Employee Name"/>
+									</Column>
+									<!--<Column>-->
+									<!--	<Label text="Email"/>-->
+									<!--</Column>-->
+									<Column>
+										<Label text="Contact No"/>
+									</Column>
+									<Column>
+										<Label text="Designation"/>
+									</Column>
+									<Column>
+										<Label text="Manager"/>
+									</Column>
+									<Column>
+										<Label text=""/>
+									</Column>
+								</columns>
+								<items>
+									<ColumnListItem>
+										<cells>
+											<Text text="{Empno}"/>
+											<Text text="{Ename}"/>
+											<Text text="{Contanctno}"/>
+											<Text text="{Designation}"/>
+											<Text text="{Workingunder}"/>
+										    <Button type="Reject" icon="sap-icon://delete" press=".onDeleteEmployee"  />
+										</cells>
+									</ColumnListItem>
+								</items>
+							</Table>
+						</Panel>
+					</content>
+				</Page>
+			</pages>
+		</App>
+	</Shell>
+</mvc:View>
