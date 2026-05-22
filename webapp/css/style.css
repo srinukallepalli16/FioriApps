@@ -1,1 +1,21 @@
 /* Enter your custom styles here */
+
+/* .sapMDialog {
+    border-radius: 12px;
+}
+
+.sapMPanel {
+    border-radius: 10px;
+}
+
+.sapMPanelContent {
+    padding: 1rem;
+} */
+
+.customTitleSpacing{
+    margin-bottom: 0.2rem !important;
+}
+
+.customTextSpacing{
+    margin-top: 0rem !important;
+}
