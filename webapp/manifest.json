@@ -1,0 +1,112 @@
+{
+  "_version": "1.84.0",
+  "sap.app": {
+    "id": "travelreq",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:basic",
+      "version": "1.24.0",
+      "toolsId": "07089fe9-d1e0-4ef1-8cec-7bcf406bee87"
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": true,
+    "dependencies": {
+      "minUI5Version": "1.148.0",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "travelreq.i18n.i18n"
+        }
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "viewType": "XML",
+        "viewPath": "travelreq.view",
+        "controlId": "splitapp",
+        "async": true
+      },
+      "routes": [
+        {
+          "pattern": "",
+          "name": "main",
+          "target": [
+            "master",
+            "detail"
+          ]
+        },
+        {
+          "pattern": "view4",
+          "name": "View4",
+          "target": ["View4"
+           ]
+        }
+      ],
+      "targets": {
+        "master": {
+          "viewName": "View1",
+          "viewId": "View1",
+          "controlAggregation": "masterPages"
+        },
+        "detail": {
+          "viewName": "View2",
+          "viewId": "View2",
+          "controlAggregation": "detailPages"
+        },
+        "View4": {
+          "viewName": "View4",
+          "viewId": "View4",
+          "controlAggregation": "detailPages"
+        }
+      }
+    },
+    "rootView": {
+      "viewName": "travelreq.view.App",
+      "type": "XML",
+      "id": "App",
+      "async": true
+    }
+  }
+}

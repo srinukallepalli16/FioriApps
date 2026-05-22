@@ -1,0 +1,12 @@
+<mvc:View controllerName="travelreq.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m">
+    <Page id="page" title="Master Page">
+        <footer>
+          <OverflowToolbar id="_IDGenOverflowToolbar" >
+              <ToolbarSpacer id="toolbarspacer" ></ToolbarSpacer>
+              <Button id="add" press="onAddPress" icon="sap-icon://add" text="Add"/>
+          </OverflowToolbar>
+        </footer>
+    </Page>
+</mvc:View>

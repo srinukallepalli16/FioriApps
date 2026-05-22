@@ -1,0 +1,5 @@
+ <mvc:View xmlns:mvc="sap.ui.core.mvc" controllerName="travelreq.controller.View2" xmlns="sap.m">
+    <Page id="_IDGenPage" title="Detail"  >
+       <Text id="_IDGenText" text="Detail View"></Text>
+    </Page>
+</mvc:View>

@@ -1,0 +1,7 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" controllerName="travelreq.controller.View4" xmlns="sap.m">
+    <Page id="view4id" title="View4" >
+        <Text id="_IDGenText1" text="This is view 4"></Text>
+    </Page>
+</mvc:View>
+
+ <!-- navButtonPress="onNavButtonPress" showNavButton="true" -->
