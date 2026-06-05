@@ -1,0 +1,58 @@
+<mvc:View controllerName="com.app.thresholdapp.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc" xmlns:smarttable="sap.ui.comp.smarttable" xmlns:smartfilterbar="sap.ui.comp.smartfilterbar"
+    xmlns="sap.m">
+    <App id="_IDGenApp">
+        <Page id="page" title="{i18n>title}">
+            <Table id="table" growing="true" growingThreshold="10" items="{/Invoices}">
+                <headerToolbar>
+                    <Toolbar id="_IDGenToolbar">
+                        <Button id="smartcontrols" text="SmartControls" press=".smartControls"></Button>
+                    </Toolbar>
+                </headerToolbar>
+                <columns>
+                    <Column id="clmn1">
+                        <Text id="_IDGenText" text="CustomerName"></Text>
+                    </Column>
+                    <Column id="ProductName">
+                        <Text id="ProductName1" text="ProductName"></Text>
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem id="_IDGenColumnListItem">
+                        <cells>
+                            <!-- <ObjectIdentifier id="_IDGenObjectIdentifier" text="{CustomerName}" />
+                            <ObjectIdentifier id="ProductName11" text="{ProductName}"></ObjectIdentifier> -->
+                               <Text id="_IDGenObjectIdentifier" text="{CustomerName}" />
+                            <Text id="ProductName11" text="{ProductName}"/>
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </Page>
+        <Page id="smartControls">
+           <Button id="smartcontrols11" text="Back to Table" press=".backToTable"></Button>
+
+           <smartfilterbar:SmartFilterBar id="smartFilterBar" entitySet="Invoices" enableBasicSearch="true" persistencyKey="MyPersistencyKey" ></smartfilterbar:SmartFilterBar>
+           <smarttable:SmartTable  smartFilterId="smartFilterBar" id="smartTable" entitySet="Invoices" tableType="Table" useExportToExcel="true" useVariantManagement="true" useTablePersonalisation="true" header="Smart Table" showRowCount="true">
+               <!-- <Table id="_IDGenTable">
+                   <columns>
+                       <Column id="clmn11">
+                           <Text id="_IDGenText1" text="CustomerName"></Text>
+                       </Column>
+                       <Column id="ProductName112">
+                           <Text id="ProductName111" text="ProductName"></Text>
+                       </Column>
+                   </columns>
+                   <items>
+                       <ColumnListItem id="_IDGenColumnListItem1">
+                           <cells>
+                               <ObjectIdentifier id="_IDGenObjectIdentifier1" text="{CustomerName}" />
+                               <ObjectIdentifier id="ProductName1111" text="{ProductName}"></ObjectIdentifier>
+                           </cells>
+                       </ColumnListItem>
+                   </items>
+               </Table> -->
+           </smarttable:SmartTable>           
+        </Page>
+    </App>
+</mvc:View>
