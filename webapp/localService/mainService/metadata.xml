@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="ZHR_DEPENDENT_SRV" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <Annotation Term="Core.SchemaVersion" String="1.0.0" xmlns="http://docs.oasis-open.org/odata/ns/edm"/>
+            <EntityType Name="DependentDropdown" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="pernr"/>
+                    <PropertyRef Name="Zdependent"/>
+                </Key>
+                <Property Name="pernr" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="PERNR_D" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Zdependent" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Dependent Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Type" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Type" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DependentName" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="DependentName" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PassportId" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="PassportId" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PassportExpiry" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="PassportExpiry" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ResidentPermit" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="ResidentPermit" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ResidentPermitExpiry" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="ResidentPermitExpiry" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityContainer Name="ZHR_DEPENDENT_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="DependentDropdownSet" EntityType="ZHR_DEPENDENT_SRV.DependentDropdown" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+            </EntityContainer>
+            <atom:link rel="self" href="http://mtsapserver1c.themdlabs.com:8001/sap/opu/odata/sap/ZHR_DEPENDENT_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="http://mtsapserver1c.themdlabs.com:8001/sap/opu/odata/sap/ZHR_DEPENDENT_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>
