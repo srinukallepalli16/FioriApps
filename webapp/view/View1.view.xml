@@ -1,0 +1,7 @@
+<mvc:View controllerName="tokenizer.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m">
+    <Page id="page" title="{i18n>title}">
+        <MultiInput id="multiInput" showValueHelp="true" valueHelpRequest="onValueHelpRequest" width="20rem"></MultiInput>
+    </Page>
+</mvc:View>
