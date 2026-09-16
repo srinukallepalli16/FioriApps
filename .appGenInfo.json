@@ -1,0 +1,23 @@
+{
+  "generationParameters": {
+    "generationDate": "Wed Sep 16 2026 09:05:33 GMT+0000 (Coordinated Universal Time)",
+    "generatorPlatform": "SAP Business Application Studio",
+    "serviceType": "SAP System (ABAP On-Premise)",
+    "metadataFilename": "",
+    "serviceUrl": "http://mtsapserver1c.themdlabs.com:8001/sap/opu/odata4/sap/zui_dynamic_table_o4/srvd/sap/zui_dynamic_table_sd/0001/",
+    "appName": "zdynamictable",
+    "appTitle": "Dynamic Table Maintanance",
+    "appDescription": "An SAP Fiori application.",
+    "appNamespace": "com.zui",
+    "ui5Theme": "sap_horizon",
+    "ui5Version": "1.102.8",
+    "enableEslint": true,
+    "enableTypeScript": false,
+    "showMockDataInfo": true,
+    "generatorVersion": "1.30.0",
+    "template": "Basic V4",
+    "generatorName": "SAP Fiori Application Generator",
+    "entityRelatedConfig": [],
+    "launchText": "To launch the generated application, run the following from the generated application root folder:\n\n```\n    npm start\n```"
+  }
+}

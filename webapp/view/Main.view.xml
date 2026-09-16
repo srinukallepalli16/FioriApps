@@ -1,0 +1,64 @@
+<mvc:View
+    controllerName="com.zui.zdynamictable.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:layout="sap.ui.layout"
+    xmlns:core="sap.ui.core">
+    
+    <Page id="_IDGenPage1" title="HR TABLE UPDATES">
+        <content>
+            <!-- 1. SE38 Selection Screen Area -->
+            <Panel id="_IDGenPanel" class="sapUiResponsiveMargin" width="auto">
+                <layout:Grid id="_IDGenGrid" defaultSpan="L12 M12 S12">
+                    
+                    <!-- Table Name with F4 Help -->
+                    <HBox id="_IDGenHBox" alignItems="Center" class="sapUiTinyMarginBottom">
+                        <Label id="_IDGenLabel" text="Table" width="150px" design="Bold"/>
+                        <Input id="inTableName" width="300px" showValueHelp="true" valueHelpRequest=".onTableF4"/>
+                    </HBox>
+
+                    <!-- Field List with F4 Help -->
+                    <HBox id="_IDGenHBox1" alignItems="Center" class="sapUiTinyMarginBottom">
+                        <Label id="_IDGenLabel1" text="Field List" width="150px" design="Bold"/>
+                        <Input id="inFieldList" width="300px" showValueHelp="true" valueHelpRequest=".onFieldF4"/>
+                    </HBox>
+
+                    <!-- Dynamic Filters Input (NOW WITH F4 HELP!) -->
+                    <HBox id="_IDGenHBox2" alignItems="Center" class="sapUiTinyMarginBottom">
+                        <Label id="_IDGenLabel2" text="Dynamic Filters" width="150px" design="Bold"/>
+                        <Input id="inDynamicFilters" width="300px" change=".onFilterStringChange" placeholder="e.g., VBELN,ERDAT" showValueHelp="true" valueHelpRequest=".onFilterF4"/>
+                    </HBox>
+
+                    <!-- EMPTY CONTAINER: We dynamically draw the filter input boxes (From/To) here -->
+                    <VBox id="dynamicFilterInputsContainer" class="sapUiMediumMarginBegin sapUiTinyMarginBottom" />
+
+                    <Toolbar id="_IDGenToolbar" height="3rem" class="sapUiTinyMarginTopBottom">
+                        <!-- Radio Buttons for Modes -->
+                        <RadioButtonGroup id="rbgMode" columns="2" select=".onModeChange">
+                            <RadioButton id="_IDGenRadioButton" text="Display Data" selected="true" />
+                            <RadioButton id="_IDGenRadioButton1" text="Live Change" />
+                        </RadioButtonGroup>
+                        <ToolbarSpacer id="_IDGenToolbarSpacer" />
+                        <Button id="_IDGenButton" text="Execute" type="Emphasized" press=".onExecute" icon="sap-icon://accept" />
+                    </Toolbar>
+
+                </layout:Grid>
+            </Panel>
+
+            <!-- 2. ALV Grid Area -->
+            <Table id="dynamicTable" class="sapUiResponsiveMargin" growing="true" mode="MultiSelect" growingThreshold="100">
+                <headerToolbar>
+                    <OverflowToolbar id="_IDGenOverflowToolbar">
+                        <!-- Insert and Delete Buttons (Hidden by default, shown in Live Change mode) -->
+                        <Button id="btnInsert" text="Insert" icon="sap-icon://add" press=".onInsertRow" visible="false" />
+                        <Button id="btnDelete" text="Delete" icon="sap-icon://delete" press=".onDeleteRow" visible="false" />
+                        <ToolbarSpacer id="_IDGenToolbarSpacer1" />
+                        <!-- Save Button -->
+                        <Button id="btnSave" text="Save Changes" type="Accept" press=".onSaveChanges" visible="false"/>
+                    </OverflowToolbar>
+                </headerToolbar>
+            </Table>
+            
+        </content>
+    </Page>
+</mvc:View>
