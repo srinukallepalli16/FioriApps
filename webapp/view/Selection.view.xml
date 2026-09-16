@@ -1,0 +1,16 @@
+<mvc:View controllerName="com.zsalesmaterial.controller.Selection"  xmlns:mvc="sap.ui.core.mvc" xmlns:layout="sap.ui.layout"  xmlns="sap.m">
+   <Page id="_IDGenPage2" title="Dynamic Report - Selection Screen">
+        <content>
+            <Panel id="_IDGenPanel1" class="sapUiResponsiveMargin" width="auto" headerText="Select Report Type">
+                <layout:VerticalLayout id="_IDGenVerticalLayout1">
+                    <RadioButtonGroup id="rbgSelection">
+                        <RadioButton id="_IDGenRadioButton2" text="Sales" />
+                        <RadioButton id="_IDGenRadioButton3" text="Material" />
+                    </RadioButtonGroup>
+                    
+                    <Button id="_IDGenButton" text="Execute" type="Emphasized" press=".onExecute" class="sapUiTinyMarginTop"/>
+                </layout:VerticalLayout>
+            </Panel>
+        </content>
+    </Page>
+</mvc:View>

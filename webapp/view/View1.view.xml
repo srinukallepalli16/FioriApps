@@ -1,0 +1,20 @@
+<mvc:View controllerName="com.zsalesmaterial.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m" xmlns:layout="sap.ui.layout" >
+   <Page id="_IDGenPage1" title="Sales &amp; Material Dynamic Application">
+        <content>
+            <!-- The Radio Button Panel -->
+            <Panel id="_IDGenPanel" class="sapUiResponsiveMargin" width="auto">
+                <layout:VerticalLayout id="_IDGenVerticalLayout">
+                    <RadioButtonGroup id="rbgDynamicSelection" select=".onRadioSelect">
+                        <RadioButton id="_IDGenRadioButton" text="Sales" />
+                        <RadioButton id="_IDGenRadioButton1" text="Material" />
+                    </RadioButtonGroup>
+                </layout:VerticalLayout>
+            </Panel>
+
+            <!-- EMPTY CONTAINER: The separate tables will load inside here -->
+            <VBox id="tableContainer" class="sapUiResponsiveMargin" />
+        </content>
+    </Page>
+</mvc:View>

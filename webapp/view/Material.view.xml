@@ -1,0 +1,26 @@
+<mvc:View
+    controllerName="com.zsalesmaterial.controller.Material"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m">
+    
+    <Page id="_IDGenPage4" title="Material Data" showNavButton="true" navButtonPress=".onNavBack">
+        <content>
+            <Table id="materialTable" items="{/MaterialData}" class="sapUiResponsiveMargin">
+                <columns>
+                    <Column id="_IDGenColumn11"><Text id="_IDGenText20" text="Material"/></Column>
+                    <Column id="_IDGenColumn12"><Text id="_IDGenText21" text="Material Type"/></Column>
+                    <Column id="_IDGenColumn13"><Text id="_IDGenText22" text="Material Group"/></Column>
+                </columns>
+                <items>
+                    <ColumnListItem id="_IDGenColumnListItem3">
+                        <cells>
+                            <Text id="_IDGenText23" text="{Material}"/>
+                            <Text id="_IDGenText24" text="{MaterialType}"/>
+                            <Text id="_IDGenText25" text="{MaterialGroup}"/>
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+    </Page>
+</mvc:View>

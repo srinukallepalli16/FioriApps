@@ -1,0 +1,24 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+    
+    <Table id="_IDGenTable1" items="{/SalesData}">
+        <columns>
+            <Column id="_IDGenColumn"><Text id="_IDGenText" text="Sales Order"/></Column>
+            <Column id="_IDGenColumn1"><Text id="_IDGenText1" text="Creation Date"/></Column>
+            <Column id="_IDGenColumn2"><Text id="_IDGenText2" text="Sold-To Party"/></Column>
+            <Column id="_IDGenColumn3"><Text id="_IDGenText3" text="Net Value"/></Column>
+        </columns>
+        <items>
+            <ColumnListItem id="_IDGenColumnListItem">
+                <cells>
+                    <Text id="_IDGenText4" text="{SalesOrder}"/>
+                    <Text id="_IDGenText5" text="{CreationDate}"/>
+                    <Text id="_IDGenText6" text="{SoldToParty}"/>
+                    <ObjectNumber id="_IDGenObjectNumber" number="{NetValue}" unit="{Currency}"/>
+                </cells>
+            </ColumnListItem>
+        </items>
+    </Table>
+    
+</core:FragmentDefinition>
