@@ -1,0 +1,29 @@
+{
+  "generationParameters": {
+    "generationDate": "Sun Sep 13 2026 03:51:26 GMT+0000 (Coordinated Universal Time)",
+    "generatorPlatform": "SAP Business Application Studio",
+    "serviceType": "SAP System (ABAP On-Premise)",
+    "metadataFilename": "",
+    "serviceUrl": "http://mtsapserver1c.themdlabs.com:8001/sap/opu/odata4/sap/zui_sales_binding_o4/srvd/sap/zui_sales_report_sd/0001/",
+    "appName": "zsalesorder",
+    "appTitle": "Sales Order Report",
+    "appDescription": "An SAP Fiori application.",
+    "appNamespace": "",
+    "ui5Theme": "sap_horizon",
+    "ui5Version": "1.102.8",
+    "enableEslint": true,
+    "enableTypeScript": false,
+    "showMockDataInfo": true,
+    "generatorVersion": "1.30.0",
+    "template": "List Report Page V4",
+    "generatorName": "SAP Fiori Application Generator",
+    "entityRelatedConfig": [
+      {
+        "type": "Main Entity",
+        "value": "SalesReport"
+      }
+    ],
+    "launchText": "To launch the generated application, run the following from the generated application root folder:\n\n```\n    npm start\n```",
+    "valueHelpDownloaded": true
+  }
+}
