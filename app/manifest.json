@@ -1,0 +1,40 @@
+{
+  "_version": "1.59.0",
+  "sap.app": {
+    "id": "hcm.copilot.chat",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "1.0.0"
+    },
+    "title": "SAP S/4HANA AI Copilot",
+    "description": "AI-powered SAP HCM Infotype & Master Data Copilot",
+    "crossNavigation": {
+      "inbounds": {
+        "HREmployee-copilot": {
+          "semanticObject": "HREmployee",
+          "action": "copilot",
+          "title": "HCM AI Copilot",
+          "subTitle": "S/4HANA Assistant",
+          "icon": "sap-icon://da",
+          "signature": {
+            "parameters": {},
+            "additionalParameters": "allowed"
+          }
+        }
+      }
+    }
+  },
+  "sap.ui5": {
+    "rootView": {
+      "viewName": "index.html",
+      "type": "HTML"
+    },
+    "dependencies": {
+      "minUI5Version": "1.120.0",
+      "libs": {
+        "sap.m": {}
+      }
+    }
+  }
+}

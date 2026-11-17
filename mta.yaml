@@ -1,0 +1,89 @@
+_schema-version: '3.1'
+ID: GenAI_Dev
+version: 1.0.0
+description: "SAP S/4HANA AI Copilot - Cloud Foundry & Work Zone"
+parameters:
+  enable-parallel-deployments: true
+
+build-parameters:
+  before-all:
+    - builder: custom
+      commands:
+        - cds build --production
+
+modules:
+  # ---------------- 1. CAP Backend Service ----------------
+  - name: GenAI_Dev-srv
+    type: nodejs
+    path: gen/srv
+    parameters:
+      buildpack: nodejs_buildpack
+      readiness-health-check-type: http
+      readiness-health-check-http-endpoint: /
+    requires:
+      - name: genai-dest
+      - name: genai-conn
+
+  # ---------------- 2. HTML5 Application Content Deployer ----------------
+  - name: GenAI_Dev-app-deployer
+    type: com.sap.application.content
+    path: .
+    requires:
+      - name: GenAI_Dev-html5-repo-host
+        parameters:
+          content-target: true
+    build-parameters:
+      build-result: resources
+      requires:
+        - name: GenAI_Dev-ui
+          artifacts:
+            - GenAI_Dev-ui.zip
+          target-path: resources/
+
+  # ---------------- 3. Static Web Packaging ----------------
+  - name: GenAI_Dev-ui
+    type: html5
+    path: app
+    build-parameters:
+      build-result: .
+      supported-platforms: []
+      builder: custom
+      commands:
+        - zip -r GenAI_Dev-ui.zip index.html manifest.json xs-app.json
+
+  # ---------------- 4. BTP Destination Content for Work Zone ----------------
+  - name: GenAI_Dev-destination-content
+    type: com.sap.application.content
+    requires:
+      - name: genai-dest
+        parameters:
+          content-target: true
+      - name: GenAI_Dev-html5-repo-host
+        parameters:
+          service-key:
+            name: GenAI_Dev-html5-repo-host-key
+    build-parameters:
+      no-source: true
+    parameters:
+      content:
+        instance:
+          destinations:
+            - Name: GenAI_Dev-html5-repo-host
+              ServiceInstanceName: GenAI_Dev-html5-repo-host
+              ServiceKeyName: GenAI_Dev-html5-repo-host-key
+              sap.cloud.service: hcm.copilot
+          existing_destinations_policy: update
+
+resources:
+  # BTP Connectivity & Destination services (existing CF instances)
+  - name: genai-dest
+    type: org.cloudfoundry.existing-service
+  - name: genai-conn
+    type: org.cloudfoundry.existing-service
+
+  # BTP HTML5 Application Repository Host
+  - name: GenAI_Dev-html5-repo-host
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: html5-apps-repo
+      service-plan: app-host

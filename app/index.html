@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAP S/4HANA AI Copilot</title>
+    <!-- SAP Fiori 72 Font & Marked.js for rendering markdown tables -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        :root {
+            --sap-shell-bg: #1d232a;
+            --sap-header-bg: #111827;
+            --sap-card-bg: #1f2937;
+            --sap-user-bubble: #0f62fe;
+            --sap-bot-bubble: #2d3748;
+            --sap-text: #f3f4f6;
+            --sap-muted: #9ca3af;
+            --sap-border: #374151;
+            --sap-accent: #38bdf8;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--sap-shell-bg);
+            color: var(--sap-text);
+            display: flex;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .chat-container {
+            width: 100%;
+            max-width: 950px;
+            display: flex;
+            flex-direction: column;
+            background: var(--sap-card-bg);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            height: 100vh;
+        }
+
+        /* Shell Header */
+        .chat-header {
+            padding: 16px 24px;
+            background: var(--sap-header-bg);
+            border-bottom: 1px solid var(--sap-border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .header-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .header-badge {
+            background: #0284c7;
+            color: white;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 3px 8px;
+            border-radius: 4px;
+        }
+
+        .header-status {
+            font-size: 13px;
+            color: #34d399;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #34d399;
+        }
+
+        /* Message Log */
+        .chat-messages {
+            flex: 1;
+            padding: 24px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .message {
+            display: flex;
+            gap: 12px;
+            max-width: 85%;
+            animation: fadeIn 0.25s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .message.user {
+            align-self: flex-end;
+            flex-direction: row-reverse;
+        }
+
+        .message.assistant {
+            align-self: flex-start;
+        }
+
+        .avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        .user .avatar {
+            background: var(--sap-user-bubble);
+            color: white;
+        }
+
+        .assistant .avatar {
+            background: #475569;
+            color: var(--sap-accent);
+            border: 1px solid var(--sap-accent);
+        }
+
+        .bubble {
+            padding: 14px 18px;
+            border-radius: 12px;
+            line-height: 1.55;
+            font-size: 14px;
+            overflow-x: auto;
+        }
+
+        .user .bubble {
+            background: var(--sap-user-bubble);
+            color: #ffffff;
+            border-bottom-right-radius: 2px;
+        }
+
+        .assistant .bubble {
+            background: var(--sap-bot-bubble);
+            color: var(--sap-text);
+            border-bottom-left-radius: 2px;
+            border: 1px solid var(--sap-border);
+        }
+
+        /* Tables & Content formatting */
+        .bubble table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 12px 0;
+            font-size: 13px;
+        }
+
+        .bubble th, .bubble td {
+            border: 1px solid var(--sap-border);
+            padding: 8px 12px;
+            text-align: left;
+        }
+
+        .bubble th {
+            background-color: #1e293b;
+            color: var(--sap-accent);
+        }
+
+        .bubble tr:nth-child(even) {
+            background-color: rgba(255,255,255,0.02);
+        }
+
+        .raw-data-btn {
+            display: inline-block;
+            margin-top: 10px;
+            font-size: 12px;
+            color: var(--sap-accent);
+            background: none;
+            border: 1px solid var(--sap-border);
+            padding: 4px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .raw-data-view {
+            display: none;
+            margin-top: 8px;
+            padding: 10px;
+            background: #0f172a;
+            border-radius: 6px;
+            font-family: monospace;
+            font-size: 11px;
+            color: #a5f3fc;
+            white-space: pre-wrap;
+            max-height: 220px;
+            overflow-y: auto;
+        }
+
+        /* Input Area */
+        .chat-input-bar {
+            padding: 18px 24px;
+            background: var(--sap-header-bg);
+            border-top: 1px solid var(--sap-border);
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .chat-input {
+            flex: 1;
+            padding: 13px 18px;
+            border-radius: 8px;
+            border: 1px solid var(--sap-border);
+            background: #111827;
+            color: white;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .chat-input:focus {
+            border-color: var(--sap-accent);
+        }
+
+        .send-btn {
+            background: var(--sap-user-bubble);
+            color: white;
+            border: none;
+            padding: 13px 24px;
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .send-btn:hover {
+            background: #0353e9;
+        }
+
+        .send-btn:disabled {
+            background: #4b5563;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <!-- Header -->
+        <header class="chat-header">
+            <div class="header-title">
+                <h2>SAP S/4HANA Copilot</h2>
+                <span class="header-badge">Gemini 3.5 Flash</span>
+            </div>
+            <div class="header-status">
+                <span class="status-dot"></span>
+                <span>System A4H Connected</span>
+            </div>
+        </header>
+
+        <!-- Message History -->
+        <div class="chat-messages" id="messagesContainer">
+            <div class="message assistant">
+                <div class="avatar">AI</div>
+                <div class="bubble">
+                    Hello! I am your SAP S/4HANA AI Copilot. I can fetch live employee records, check personnel assignments, and inspect CDS views directly from your backend. What would you like to check?
+                </div>
+            </div>
+        </div>
+
+        <!-- Input Bar -->
+        <form class="chat-input-bar" id="chatForm">
+            <input 
+                type="text" 
+                class="chat-input" 
+                id="promptInput" 
+                placeholder="Ask about SAP employees (e.g., 'Show me the list of employees created in SAP')..." 
+                autocomplete="off"
+            />
+            <button type="submit" class="send-btn" id="sendBtn">Send</button>
+        </form>
+    </div>
+
+    <script>
+        const chatForm = document.getElementById('chatForm');
+        const promptInput = document.getElementById('promptInput');
+        const sendBtn = document.getElementById('sendBtn');
+        const messagesContainer = document.getElementById('messagesContainer');
+
+        function appendMessage(sender, text, rawJson = null) {
+            const msgDiv = document.createElement('div');
+            msgDiv.className = `message ${sender}`;
+
+            const avatar = document.createElement('div');
+            avatar.className = 'avatar';
+            avatar.textContent = sender === 'user' ? 'You' : 'AI';
+
+            const bubble = document.createElement('div');
+            bubble.className = 'bubble';
+
+            if (sender === 'assistant') {
+                bubble.innerHTML = marked.parse(text);
+
+                if (rawJson) {
+                    const toggleBtn = document.createElement('button');
+                    toggleBtn.className = 'raw-data-btn';
+                    toggleBtn.textContent = 'View SAP OData Payload';
+
+                    const rawView = document.createElement('div');
+                    rawView.className = 'raw-data-view';
+                    try {
+                        const parsed = typeof rawJson === 'string' ? JSON.parse(rawJson) : rawJson;
+                        rawView.textContent = JSON.stringify(parsed, null, 2);
+                    } catch {
+                        rawView.textContent = rawJson;
+                    }
+
+                    toggleBtn.onclick = () => {
+                        const isHidden = rawView.style.display === 'none' || !rawView.style.display;
+                        rawView.style.display = isHidden ? 'block' : 'none';
+                        toggleBtn.textContent = isHidden ? 'Hide SAP OData Payload' : 'View SAP OData Payload';
+                    };
+
+                    bubble.appendChild(toggleBtn);
+                    bubble.appendChild(rawView);
+                }
+            } else {
+                bubble.textContent = text;
+            }
+
+            msgDiv.appendChild(avatar);
+            msgDiv.appendChild(bubble);
+            messagesContainer.appendChild(msgDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            return msgDiv;
+        }
+
+        chatForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const prompt = promptInput.value.trim();
+            if (!prompt) return;
+
+            // Render user bubble
+            appendMessage('user', prompt);
+            promptInput.value = '';
+            promptInput.disabled = true;
+            sendBtn.disabled = true;
+
+            // Temporary thinking bubble
+            const loadingMsg = appendMessage('assistant', '*Copilot is querying SAP S/4HANA via Cloud Connector...*');
+
+            try {
+                const response = await fetch('/api/chat/askCopilot', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ prompt })
+                });
+
+                const data = await response.json();
+                loadingMsg.remove();
+
+                if (data.error) {
+                    appendMessage('assistant', `⚠️ **Error:** ${data.error.message}`);
+                } else {
+                    appendMessage('assistant', data.answer, data.rawRecords);
+                }
+            } catch (err) {
+                loadingMsg.remove();
+                appendMessage('assistant', `⚠️ **Network Error:** Could not contact CAP service.`);
+            } finally {
+                promptInput.disabled = false;
+                sendBtn.disabled = false;
+                promptInput.focus();
+            }
+        });
+    </script>
+</body>
+</html>
